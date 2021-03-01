@@ -1,0 +1,25 @@
+#profile-infos {
+  height: 40vh;
+  margin-top: 6vh;
+  display: flex;
+  padding: 0 10rem;
+}
+
+#profile-left {
+  height: 100%;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+}
+
+#profile-right {
+  height: 100%;
+  flex: 2;
+}
+
+#profilePicHead {
+  border-radius: 50%;
+  width: 150px;
+  margin-top: 3rem;
+}

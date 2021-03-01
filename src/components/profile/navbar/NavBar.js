@@ -1,7 +1,6 @@
 import React from "react";
 import { Row } from "react-bootstrap";
 import logo from "../../../assets/Instagram-Logo.png";
-import profilePicNav from "../../../assets/profile-pic.jpg";
 import { IoHomeOutline } from "react-icons/io5";
 import { FiSend, FiHeart } from "react-icons/fi";
 import { AiOutlineCompass } from "react-icons/ai";
@@ -23,7 +22,11 @@ const NavBar = () => {
             <FiSend style={{ width: "20px", height: "25px" }} />
             <AiOutlineCompass style={{ width: "20px", height: "25px" }} />
             <FiHeart style={{ width: "20px", height: "25px" }} />
-            <img id="profile-pic-nav" src={profilePicNav} alt="profile-pic" />
+            <img
+              id="profile-pic-nav"
+              src="https://via.placeholder.com/150"
+              alt="profile-pic"
+            />
           </div>
         </div>
       </Row>

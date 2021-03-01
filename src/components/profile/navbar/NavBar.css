@@ -8,7 +8,7 @@
   width: 100vw;
   max-width: 1200px;
   height: 6vh;
-  position: absolute;
+  position: fixed;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
