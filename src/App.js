@@ -21,6 +21,11 @@ class App extends Component {
         <Route path = "/register">
         <Register />
         </Route>
+        <div className="App" style={{ overflowX: "hidden" }}>
+      <NavBar />
+      <Header />
+      <Posts />
+    </div>
         </Router>
       </>
     );

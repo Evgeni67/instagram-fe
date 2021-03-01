@@ -1,0 +1,63 @@
+#profile-infos {
+  height: 40vh;
+  width: 100%;
+  margin-top: 6vh;
+  display: flex;
+  padding: 0 10rem;
+}
+
+#profile-left {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+}
+
+#profile-right {
+  height: 15%;
+  padding: 1rem 2rem;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 6vh;
+  flex: 2;
+}
+
+#profile-top {
+  display: flex;
+}
+
+#username-wrapper {
+  flex: 1;
+}
+#edit-profile {
+  border: 1px solid grey;
+  padding: 0 0.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.settings-btn {
+  cursor: pointer;
+}
+
+#edit-tools {
+  display: flex;
+  align-items: center;
+  flex: 2;
+}
+
+#profilePicHead {
+  border-radius: 50%;
+  width: 150px;
+  margin-top: 3rem;
+}
+
+#profile-center {
+  display: flex;
+  justify-content: space-between;
+  width: 60%;
+}
+
+#stories {
+  padding: 1rem 10rem;
+}
