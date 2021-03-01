@@ -12,9 +12,9 @@ import {
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import logo from "./instagram.png";
 import { GrFacebook } from "react-icons/gr";
-import "./login.css";
+import "./register.css";
 
-class Login extends Component {
+class Register extends Component {
   state = {
     email: "",
     password: "",
@@ -29,9 +29,9 @@ class Login extends Component {
     this.setState({ email: e.target.value });
   };
   addTokens = (data) => {
-this.setState({token:data.token})
-this.setState({token:data.refreshToken})
-  }
+    this.setState({ token: data.token });
+    this.setState({ token: data.refreshToken });
+  };
   login = async () => {
     this.setState({ loading: true });
     const requestOptions = {
@@ -42,69 +42,94 @@ this.setState({token:data.refreshToken})
         email: this.state.email,
       }),
     };
-    await fetch("http://localhost:9999/users/login", requestOptions)
+    await fetch("http://localhost:9999/users/register", requestOptions)
       .then((response) => response.json())
-      .then((data) =>  this.addTokens(data));
-      localStorage.setItem('token', this.state.token);
-      localStorage.setItem('refreshToken',  this.state.refreshToken);
-      console.log(this.state.tokens)
-     window.location = "/home"
+      .then((data) => console.log(data));
   };
   render() {
     return (
       <>
         <Row className="d-flex justify-content-center mt-5">
-          <Col sm={3} />
-          <Col sm={3}>
-            <img src={logo} className="loginImage" />
-          </Col>
           <Col sm={3} className>
-            <Container className="loginContainer">
+            <Container className="registerContainer2">
               <Row className="d-flex justify-content-center ">
                 <img
                   className="containerPhoto"
                   src="https://logos-world.net/wp-content/uploads/2020/04/Instagram-Logo.png"
                 />
               </Row>
+              <p className="bigText text-align-center ml-3">
+                Register to see photos and videos from your friends{" "}
+              </p>
+              <Row className=" d-flex justify-content-center mb-4">
+                <button className="loginBtn" onClick={() => this.login()}>
+                  <GrFacebook className="mr-1 mb-1" />
+                  Register with Facebook
+                </button>
+              </Row>
+              <hr />
               <Row className=" d-flex justify-content-center mb-2">
                 <input
                   autocomplete="off"
                   type="email"
                   className="emailInput"
-                  placeholder="email"
-                  onChange = {(e) => this.changeEmail(e)}
+                  placeholder="Mobile number or email"
+                  onChange={(e) => this.changeEmail(e)}
                 ></input>
               </Row>
-              <Row className=" d-flex justify-content-center mb-4">
+              <Row className=" d-flex justify-content-center mb-2">
+                <input
+                  autocomplete="off"
+                  type="email"
+                  className="emailInput"
+                  placeholder="Full name"
+                  onChange={(e) => this.changeEmail(e)}
+                ></input>
+              </Row>
+              <Row className=" d-flex justify-content-center mb-2">
+                <input
+                  autocomplete="off"
+                  type="email"
+                  className="emailInput"
+                  placeholder="User name"
+                  onChange={(e) => this.changeEmail(e)}
+                ></input>
+              </Row>
+              <Row className=" d-flex justify-content-center mb-2">
                 <input
                   autocomplete="off"
                   type="password"
-                  className="passwordInput"
-                  placeholder="password"
-                  onChange = {(e) => this.changePassword(e)}
+                  className="emailInput"
+                  placeholder="email"
+                  onChange={(e) => this.changeEmail(e)}
                 ></input>
-                <button className="btn">
-                  <h className="search">
-                    <p className="btnText">Show</p>
-                  </h>
+              </Row>
+
+              <Row className=" d-flex justify-content-center mb-4">
+                <button className="loginBtn" onClick={() => this.login()}>
+                  Register
                 </button>
               </Row>
-              <Row className=" d-flex justify-content-center mb-4">
-                <button className="loginBtn" onClick = {()=> this.login()}>Log In</button>
-              </Row>
-              <hr />
-              <Row className=" d-flex justify-content-center mt-2">
-                <GrFacebook className="blue mr-2 mt-1" />{" "}
-                <p className="blue"> Log In</p>
-              </Row>
+
+              
               <Row className=" d-flex justify-content-center mb-3">
                 <p className="blue"> Forgotten password?</p>
               </Row>
+              <p className="bigText2">
+                When you register, you agree to our Terms. Learn how we collect,
+                use and share your data in our Data Policy, and how we use
+                cookies and similar technologies in our <strong onClick = {()=>window.location="https://help.instagram.com/1896641480634370?ref=ig"}>Cookie Policy</strong>.{" "}
+              </p>
             </Container>
-            <Container className="registerContainer mt-3">
+            <Container className="registerContainer3 mt-3">
               <Row className=" d-flex justify-content-center mt-4">
-                <p className="registrationText"> Do not have an account?</p>
-                <p className="blue ml-2" onClick = {()=> window.location = "/register"}>Register</p>
+                <p className="registrationText"> Already have an account?</p>
+                <p
+                  className="blue ml-2"
+                  onClick={() => (window.location = "/login")}
+                >
+                  Log In
+                </p>
               </Row>
             </Container>
             <Row className=" d-flex justify-content-center mt-2">
@@ -121,10 +146,9 @@ this.setState({token:data.refreshToken})
               />
             </Row>
           </Col>
-          <Col sm={3} />
         </Row>
       </>
     );
   }
 }
-export default Login;
+export default Register;
