@@ -11,7 +11,7 @@
   margin-top: -17px;
 }
 
-#post {
+.post-btn {
   width: 110px;
   height: 100%;
   padding: 1rem 0;
@@ -19,15 +19,17 @@
   font-size: 0.9rem;
   display: flex;
   justify-content: center;
+  cursor: pointer;
 }
 
-#saved {
+.saved-btn {
   width: 110px;
   height: 100%;
   padding: 1rem 0;
   font-size: 0.8rem;
   display: flex;
   justify-content: center;
+  cursor: pointer;
 }
 
 #post-items {

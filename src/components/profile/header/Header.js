@@ -20,7 +20,7 @@ const Header = () => {
             </div>
             <div id="edit-tools">
               <div id="edit-profile">Edit profile</div>
-              <AiOutlineSetting className="ml-3" />
+              <AiOutlineSetting className="ml-3 settings-btn" />
             </div>
           </div>
           <div id="profile-center" className="my-4">

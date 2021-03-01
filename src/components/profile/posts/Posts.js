@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BsGrid3X3, BsBookmark } from "react-icons/bs";
 import "./Posts.css";
 
@@ -6,14 +6,14 @@ const Posts = () => {
   return (
     <div id="posts-section">
       <div id="posts-navigation">
-        <div id="post">
+        <div className="post-btn">
           <BsGrid3X3
             className="mt-1"
             style={{ width: "15px", height: "15px" }}
           />
           <p className="my-auto ml-2">POST</p>
         </div>
-        <div id="saved">
+        <div className="saved-btn">
           <BsBookmark
             className="mt-1"
             style={{ width: "15px", height: "15px" }}
