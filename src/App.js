@@ -1,10 +1,11 @@
 import React from "react";
-import View from "./components/profile/View";
+import NavBar from "./components/profile/header/NavBar";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
     <div className="App">
-      <View />
+      <NavBar />
     </div>
   );
 }
