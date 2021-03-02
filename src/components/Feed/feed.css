@@ -23,6 +23,14 @@ body{
 
     display: inline-block;}
 
+.profilePic-story{
+    height: 56px;
+    width: 56px;
+    display: inline-block;
+    
+
+}
+
 .image{
     position:relative;
     overflow:hidden;
@@ -76,5 +84,7 @@ body{
         border:none;
        
     }
+
+    
 
 
