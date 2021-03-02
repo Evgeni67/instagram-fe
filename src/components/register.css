@@ -1,0 +1,22 @@
+.registerContainer2 {
+    width: 315px !important;
+    height:550px;
+    border: 1px lightgray solid ;
+    margin-top: 0x;
+    border-radius: 1px;
+  }
+  .bigText{
+      color: #8E8E8E
+  }
+  .registerContainer3{
+    width: 315px !important;
+    height:70px;
+    border: 1px lightgray solid ;
+    margin-top: 0x;
+    border-radius: 1px;
+}
+.bigText2{
+    margin-top: -15px;
+    color: #8E8E8E;
+    font-size: 13px;
+}

@@ -1,8 +1,21 @@
-import React from "react";
+import React,{Component} from "react";
 import { AiOutlineSetting } from "react-icons/ai";
 import "./Header.css";
 
-const Header = () => {
+class Header extends Component {
+  componentDidMount = async () => {
+    console.log(localStorage.getItem("token"));
+    const requestOptions = {
+      method: "GET",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    };
+    await fetch("http://localhost:9999/users/me", requestOptions)
+      .then((response) => response.json())
+      .then((data) => console.log(data));
+  };
+  render() {
   return (
     <>
       <div id="profile-infos">
@@ -45,5 +58,6 @@ const Header = () => {
     </>
   );
 };
+}
 
 export default Header;
