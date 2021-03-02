@@ -111,7 +111,7 @@ this.setState({refreshToken:data.refreshToken})
             <Row className=" d-flex justify-content-center mt-2">
               <p className="downloadText">Download the app</p>
             </Row>
-            <Row className=" d-flex justify-content-center buttons">
+            <Row className="d-flex justify-content-center buttons ">
             <img
                 className="downloadBtn1"
                 src={downloadAppStore}

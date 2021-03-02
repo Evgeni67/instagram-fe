@@ -4,6 +4,7 @@
   border: 1px lightgray solid ;
   margin-top: 0x;
   border-radius: 1px;
+  background-color: white
 }
 .registerContainer{
     width: 300px !important;
@@ -11,6 +12,7 @@
     border: 1px lightgray solid ;
     margin-top: 0x;
     border-radius: 1px;
+    background-color: white
 }
 .loginImage {
     width:350px
@@ -18,12 +20,12 @@
 .buttons{
 }
 .downloadBtn{
-    width:140px ;
+    width:120px ;
     height:46px;
-    margin-top: 47px;
 }
 .downloadBtn1{
-    width:140px;
+    height:46px;
+    width:120px;
     margin-right: 10px;
 }
 .containerPhoto{
