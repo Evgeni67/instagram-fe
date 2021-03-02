@@ -11,23 +11,20 @@ class App extends Component {
   render() {
     return (
       <>
-
-      <Router>
-        <Route  exact path = "/">
-        <Login />
-        </Route>
-        <Route exact path = "/register">
-        <Register />
-        </Route>
-        <Route  exact path = "/home">
-        <div className="App" style={{ overflowX: "hidden" }}>
-          
-      <NavBar />
-      <Header />
-      <Posts />
-    </div>
-    </Route>
-
+        <Router>
+          <Route exact path="/">
+            <Login />
+          </Route>
+          <Route exact path="/register">
+            <Register />
+          </Route>
+          <Route exact path="/home">
+            <div className="App" style={{ overflowX: "hidden" }}>
+              <NavBar />
+              <Header />
+              <Posts />
+            </div>
+          </Route>
         </Router>
       </>
     );

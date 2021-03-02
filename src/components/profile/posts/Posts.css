@@ -19,10 +19,8 @@
   display: flex;
   justify-content: center;
   cursor: pointer;
-}
-
-.post-btn:active {
-  border-top: 1px solid black;
+  border: none;
+  background: transparent;
 }
 
 .saved-btn {
@@ -33,6 +31,8 @@
   display: flex;
   justify-content: center;
   cursor: pointer;
+  border: none;
+  background: transparent;
 }
 
 #post-items {
