@@ -6,6 +6,7 @@ import NavBar from "./components/profile/navbar/NavBar";
 import Header from "./components/profile/header/Header";
 import Posts from "./components/profile/posts/Posts";
 import SideBar from "./components/Feed/SideBar";
+import Stories from "./components/Feed/Stories";
 import Feed from "./components/Feed/Feed";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Row,Col  } from "react-bootstrap";
@@ -21,25 +22,28 @@ class App extends Component {
           <Route exact path="/register">
             <Register />
           </Route>
-          
           <Route exact path="/home">
-            <div className="App" style={{ overflowX: "hidden" }}>
-            
+            <div className="App" style={{ overflowX: "hidden"}}>
+              <NavBar />
               <Header />
               <Posts />
-              <NavBar />
+              
             </div>
           </Route>
           <Route exact path="/feed">
-            <Row>
-              <Col className="s-12 md-7" style={{marginTop: "6vh"}}>
-              <Feed />
-              </Col>
-              <Col className=" d-s-none d-m-block md-3 " style={{marginTop: "6vh"}}>
-              <SideBar/>
-              </Col>
-            </Row>
-           
+            <div className="App" style={{ overflowX: "hidden"}}>
+              <NavBar />
+              {/* <Stories  /> */}
+              
+              <Row  style={{marginLeft:"70px", marginRight:"70px" , marginTop:"100px"}} >
+                <Col className="xs-12 lg-3" >
+                <Feed />
+                </Col>
+                <Col className=" xs-12 lg-9  " >
+                <SideBar/>
+                </Col>
+              </Row>
+            </div>
           </Route>
         </Router>
       </>

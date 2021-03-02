@@ -1,7 +1,8 @@
-#profile-infos {
-    height: 40vh;
-    width: 100%;
-    margin-top: 6vh;
-    display: flex;
-    padding: 0 10rem;
-  }
+.profilePic{
+  
+        height: 36px;
+        width: 36px;
+  
+        display: inline-block;
+  
+}
