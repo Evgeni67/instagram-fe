@@ -15,7 +15,7 @@ class App extends Component {
     return (
       <>
         <Router>
-        
+
           <Route exact path="/">
             <Login />
           </Route>
@@ -23,6 +23,7 @@ class App extends Component {
             <Register />
           </Route>
           <Route exact path="/home">
+
             <div className="App" style={{ overflowX: "hidden"}}>
               <NavBar />
               <Header />
@@ -43,6 +44,7 @@ class App extends Component {
                 <SideBar/>
                 </Col>
               </Row>
+
             </div>
           </Route>
         </Router>
