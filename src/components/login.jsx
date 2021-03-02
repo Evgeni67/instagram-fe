@@ -9,6 +9,7 @@ import {
   Form,
   FormControl,
 } from "react-bootstrap";
+import downloadAppStore from "../assets/downloadAPPstore.png"
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import logo from "./instagram.png";
 import { GrFacebook } from "react-icons/gr";
@@ -110,10 +111,10 @@ this.setState({refreshToken:data.refreshToken})
             <Row className=" d-flex justify-content-center mt-2">
               <p className="downloadText">Download the app</p>
             </Row>
-            <Row className=" d-flex justify-content-center buttons">
-              <img
+            <Row className="d-flex justify-content-center buttons ">
+            <img
                 className="downloadBtn1"
-                src="http://assets.stickpng.com/thumbs/5a902db97f96951c82922874.png"
+                src={downloadAppStore}
               />
               <img
                 className="downloadBtn"
