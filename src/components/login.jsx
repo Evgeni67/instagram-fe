@@ -30,7 +30,7 @@ class Login extends Component {
   };
   addTokens = (data) => {
 this.setState({token:data.token})
-this.setState({token:data.refreshToken})
+this.setState({refreshToken:data.refreshToken})
   }
   login = async () => {
     this.setState({ loading: true });
@@ -44,10 +44,10 @@ this.setState({token:data.refreshToken})
     };
     await fetch("http://localhost:9999/users/login", requestOptions)
       .then((response) => response.json())
-      .then((data) =>  this.addTokens(data));
+      .then((data) => this.addTokens(data));
       localStorage.setItem('token', this.state.token);
       localStorage.setItem('refreshToken',  this.state.refreshToken);
-      console.log(this.state.tokens)
+      console.log(this.state.token)
      window.location = "/home"
   };
   render() {
