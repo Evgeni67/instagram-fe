@@ -9,13 +9,12 @@ import SideBar from "./components/Feed/SideBar";
 import Stories from "./components/Feed/Stories";
 import Feed from "./components/Feed/Feed";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import { Row,Col  } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 class App extends Component {
   render() {
     return (
       <>
         <Router>
-
           <Route exact path="/">
             <Login />
           </Route>
@@ -23,28 +22,37 @@ class App extends Component {
             <Register />
           </Route>
           <Route exact path="/home">
-
-            <div className="App" style={{ overflowX: "hidden"}}>
+            <div className="App" style={{ overflowX: "hidden" }}>
               <NavBar />
-              <Header />
-              <Posts />
-              
             </div>
           </Route>
+          <Route exact path="/profile">
+            <NavBar />
+            <Header />
+            <Posts />
+          </Route>
           <Route exact path="/feed">
-            <div className="App" style={{ overflowX: "hidden"}}>
+            <div className="App" style={{ overflowX: "hidden" }}>
               <NavBar />
               {/* <Stories  /> */}
-              
-              <Row  style={{marginLeft:"70px", marginRight:"70px" , marginTop:"100px"}} >
-                <Col sm={ 12} md={8} >
-                <Feed />
-                </Col>
-                <Col   md={4}  className="d-sm-none d-md-block" >
-                <SideBar/>
-                </Col>
-              </Row>
 
+
+              <Row
+                style={{
+                  marginLeft: "70px",
+                  marginRight: "70px",
+                  marginTop: "100px",
+                }}
+              >
+                <Col sm={12} md={9}>
+                  <Feed />
+                </Col>
+                <Col md={3} className="d-sm-none d-md-block">
+                  <SideBar />
+
+
+      </Col>
+              </Row>
             </div>
           </Route>
         </Router>

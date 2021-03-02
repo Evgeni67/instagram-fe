@@ -48,3 +48,8 @@
   display: flex;
   justify-content: center;
 }
+
+#modal-background {
+  background-color: grey;
+  z-index: 100;
+}

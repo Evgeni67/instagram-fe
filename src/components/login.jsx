@@ -2,14 +2,13 @@ import React, { Component } from "react";
 import {
   Row,
   Col,
-  Button,
   Container,
   Navbar,
   Nav,
   Form,
   FormControl,
 } from "react-bootstrap";
-import downloadAppStore from "../assets/downloadAPPstore.png"
+import downloadAppStore from "../assets/downloadAPPstore.png";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import logo from "./instagram.png";
 import { GrFacebook } from "react-icons/gr";
@@ -30,9 +29,9 @@ class Login extends Component {
     this.setState({ email: e.target.value });
   };
   addTokens = (data) => {
-this.setState({token:data.token})
-this.setState({refreshToken:data.refreshToken})
-  }
+    this.setState({ token: data.token });
+    this.setState({ refreshToken: data.refreshToken });
+  };
   login = async () => {
     this.setState({ loading: true });
     const requestOptions = {
@@ -46,10 +45,10 @@ this.setState({refreshToken:data.refreshToken})
     await fetch("http://localhost:9999/users/login", requestOptions)
       .then((response) => response.json())
       .then((data) => this.addTokens(data));
-      localStorage.setItem('token', this.state.token);
-      localStorage.setItem('refreshToken',  this.state.refreshToken);
-      console.log(this.state.token)
-     window.location = "/home"
+    localStorage.setItem("token", this.state.token);
+    localStorage.setItem("refreshToken", this.state.refreshToken);
+    console.log(this.state.token);
+    window.location = "/home";
   };
   render() {
     return (
@@ -73,7 +72,7 @@ this.setState({refreshToken:data.refreshToken})
                   type="email"
                   className="emailInput"
                   placeholder="email"
-                  onChange = {(e) => this.changeEmail(e)}
+                  onChange={(e) => this.changeEmail(e)}
                 ></input>
               </Row>
               <Row className=" d-flex justify-content-center mb-4">
@@ -82,7 +81,7 @@ this.setState({refreshToken:data.refreshToken})
                   type="password"
                   className="passwordInput"
                   placeholder="password"
-                  onChange = {(e) => this.changePassword(e)}
+                  onChange={(e) => this.changePassword(e)}
                 ></input>
                 <button className="btn">
                   <h className="search">
@@ -91,7 +90,9 @@ this.setState({refreshToken:data.refreshToken})
                 </button>
               </Row>
               <Row className=" d-flex justify-content-center mb-4">
-                <button className="loginBtn" onClick = {()=> this.login()}>Log In</button>
+                <button className="loginBtn" onClick={() => this.login()}>
+                  Log In
+                </button>
               </Row>
               <hr />
               <Row className=" d-flex justify-content-center mt-2">
@@ -105,17 +106,19 @@ this.setState({refreshToken:data.refreshToken})
             <Container className="registerContainer mt-3">
               <Row className=" d-flex justify-content-center mt-4">
                 <p className="registrationText"> Do not have an account?</p>
-                <p className="blue ml-2" onClick = {()=> window.location = "/register"}>Register</p>
+                <p
+                  className="blue ml-2"
+                  onClick={() => (window.location = "/register")}
+                >
+                  Register
+                </p>
               </Row>
             </Container>
             <Row className=" d-flex justify-content-center mt-2">
               <p className="downloadText">Download the app</p>
             </Row>
             <Row className="d-flex justify-content-center buttons ">
-            <img
-                className="downloadBtn1"
-                src={downloadAppStore}
-              />
+              <img className="downloadBtn1" src={downloadAppStore} />
               <img
                 className="downloadBtn"
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/1200px-Google_Play_Store_badge_EN.svg.png"
