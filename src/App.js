@@ -37,10 +37,10 @@ class App extends Component {
               {/* <Stories  /> */}
               
               <Row  style={{marginLeft:"70px", marginRight:"70px" , marginTop:"100px"}} >
-                <Col sm={ 12} md={9} >
+                <Col sm={ 12} md={8} >
                 <Feed />
                 </Col>
-                <Col   md={3}  className="d-sm-none d-md-block" >
+                <Col   md={4}  className="d-sm-none d-md-block" >
                 <SideBar/>
                 </Col>
               </Row>
