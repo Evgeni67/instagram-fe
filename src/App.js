@@ -16,13 +16,13 @@ class App extends Component {
     return (
       <>
       <Router>
-        <Route path = "/login">
+        <Route  exact path = "/">
         <Login />
         </Route>
-        <Route path = "/register">
+        <Route exact path = "/register">
         <Register />
         </Route>
-        <Route path = "/home">
+        <Route  exact path = "/home">
         <div className="App" style={{ overflowX: "hidden" }}>
           
       <NavBar />
