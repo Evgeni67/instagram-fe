@@ -15,11 +15,14 @@
   width: 110px;
   height: 100%;
   padding: 1rem 0;
-  border-top: 1px solid black;
   font-size: 0.9rem;
   display: flex;
   justify-content: center;
   cursor: pointer;
+}
+
+.post-btn:active {
+  border-top: 1px solid black;
 }
 
 .saved-btn {

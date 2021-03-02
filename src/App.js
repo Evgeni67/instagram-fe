@@ -5,16 +5,13 @@ import "bootstrap/dist/css/bootstrap.css";
 import NavBar from "./components/profile/navbar/NavBar";
 import Header from "./components/profile/header/Header";
 import Posts from "./components/profile/posts/Posts";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+
 class App extends Component {
   render() {
     return (
       <>
+
       <Router>
         <Route  exact path = "/">
         <Login />
@@ -30,6 +27,7 @@ class App extends Component {
       <Posts />
     </div>
     </Route>
+
         </Router>
       </>
     );

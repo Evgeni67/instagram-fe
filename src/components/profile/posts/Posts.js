@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { BsGrid3X3, BsBookmark } from "react-icons/bs";
 import "./Posts.css";
 
