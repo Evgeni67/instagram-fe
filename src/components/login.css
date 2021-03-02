@@ -4,7 +4,6 @@
   border: 1px lightgray solid ;
   margin-top: 0x;
   border-radius: 1px;
-  background-color:whitesmoke;
 }
 .registerContainer{
     width: 300px !important;
@@ -12,13 +11,11 @@
     border: 1px lightgray solid ;
     margin-top: 0x;
     border-radius: 1px;
-    background-color:white;
 }
 .loginImage {
     width:350px
 }
 .buttons{
-    margin-top: -50px;
 }
 .downloadBtn{
     width:140px ;
