@@ -42,13 +42,14 @@ const mapDispatchToProps = (dispatch) => ({
       const url = process.env.REACT_APP_URL;
       const token =
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDNmNmYzM2QwYTFmMDIxZDExNjMwYjEiLCJpYXQiOjE2MTQ3Njk5OTUsImV4cCI6MTYxNTM3NDc5NX0.tNf_qPBp5yKguRdzV4kW7b4FHSn47i_tcXV8WFidCaU";
-      const response = await fetch(url + "/posts/myFollowed", {
+      const response = await fetch(url + "/posts/fromFollowed", {
         headers: {
           Authorization: "Bearer " + token,
         },
       });
 
       const myFollowedOnes = await response.json();
+      console.log("I foloow:",myFollowedOnes)
 
       if (response.ok) {
         dispatch({
@@ -58,43 +59,46 @@ const mapDispatchToProps = (dispatch) => ({
       } else {
         dispatch({
           type: "SET_ERROR",
-          payload: me,
+          payload: myFollowedOnes,
         });
       }
     }),
 
-  // fetchUserswithThunk: (id) =>
-  //   dispatch(async (dispatch) => {
-  //     const url = process.env.REACT_APP_URL;
-  //     const response = await fetch(url + "/users", {
-  //       headers: {
-  //         "Authorization":"Bearer:" +
-  //           "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDNmNmYzM2QwYTFmMDIxZDExNjMwYjEiLCJpYXQiOjE2MTQ3Njk5OTUsImV4cCI6MTYxNTM3NDc5NX0.tNf_qPBp5yKguRdzV4kW7b4FHSn47i_tcXV8WFidCaU"
+  fetchUserswithThunk: (id) =>
+    dispatch(async (dispatch) => {
+      const url = process.env.REACT_APP_URL;
+      const token =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDNmNmYzM2QwYTFmMDIxZDExNjMwYjEiLCJpYXQiOjE2MTQ3Njk5OTUsImV4cCI6MTYxNTM3NDc5NX0.tNf_qPBp5yKguRdzV4kW7b4FHSn47i_tcXV8WFidCaU";
+      const response = await fetch(url + "/users", {
+        headers: {
+          "Authorization":"Bearer " +
+          token
 
-  //       },
-  //     });
+        },
+      });
 
-  //     const users= await response.json();
-  //     console.log("users", users);
+      const users= await response.json();
+      console.log("users", users);
 
-  //     if (response.ok) {
-  //       dispatch({
-  //         type: "SET_USERS",
-  //         payload: users,
+      if (response.ok) {
+        dispatch({
+          type: "SET_USERS",
+          payload: users,
 
-  //       });
-  //     } else {
-  //       dispatch({
-  //         type: "SET_ERROR",
-  //         payload: users,
-  //       });
-  //     }
-  //   }),
+        });
+      } else {
+        dispatch({
+          type: "SET_ERROR",
+          payload: users,
+        });
+      }
+    }),
 });
 
 class Feed extends Component {
   componentDidMount = () => {
     this.props.fetchMewithThunk();
+    this.props.fetchUserswithThunk();
     this.props.fetchMyFollowedOneswithThunk();
   };
 
@@ -105,6 +109,8 @@ class Feed extends Component {
   };
   render() {
     const { posts, name, surname, userName, email, follows } = this.props.me.me;
+    const { myFollowedOnes} = this.props.me;
+    
 
     return (
       <>

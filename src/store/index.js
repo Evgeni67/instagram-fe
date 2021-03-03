@@ -11,17 +11,7 @@ export const initialState = {
   me: {
     me:{},
     myfollowedOnes:[]
-    // email: "",
-    // userName: "",
-    // name:"",
-    // surname:"",
-    // profilePicUrl: "",
-    // myposts: [],
-    // comments: [],
-    // likedPosts: [],
-    // likedComments: [],
-    // follows: [],
-    // followers:[]
+
   },
 
   users:[],
