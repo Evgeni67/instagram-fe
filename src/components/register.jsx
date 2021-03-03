@@ -32,7 +32,7 @@ class Register extends Component {
     this.setState({ token: data.token });
     this.setState({ token: data.refreshToken });
   };
-  login = async () => {
+  register = async () => {
     this.setState({ loading: true });
     const requestOptions = {
       method: "POST",
@@ -71,19 +71,17 @@ class Register extends Component {
               <Row className=" d-flex justify-content-center mb-2">
                 <input
                   autocomplete="off"
-                  type="email"
+                  type="phone"
                   className="emailInput"
                   placeholder="Mobile number or email"
-                  onChange={(e) => this.changeEmail(e)}
                 ></input>
               </Row>
               <Row className=" d-flex justify-content-center mb-2">
                 <input
                   autocomplete="off"
-                  type="email"
+                  type="name"
                   className="emailInput"
                   placeholder="Full name"
-                  onChange={(e) => this.changeEmail(e)}
                 ></input>
               </Row>
               <Row className=" d-flex justify-content-center mb-2">
@@ -100,13 +98,13 @@ class Register extends Component {
                   autocomplete="off"
                   type="password"
                   className="emailInput"
-                  placeholder="email"
-                  onChange={(e) => this.changeEmail(e)}
+                  placeholder="password"
+                  onChange={(e) => this.changePassword(e)}
                 ></input>
               </Row>
 
               <Row className=" d-flex justify-content-center mb-4">
-                <button className="loginBtn" onClick={() => this.login()}>
+                <button className="loginBtn" onClick={() => this.register()}>
                   Register
                 </button>
               </Row>

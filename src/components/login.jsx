@@ -24,12 +24,16 @@ class Login extends Component {
   changePassword = (e) => {
     this.setState({ password: e.target.value });
   };
-
+  loginWithGoogle = async () => {
+    await fetch("http://localhost:9999/users/googleLogin")
+      .then((response) => response.json())
+      .then((data) => console.log(data));
+  };
   changeEmail = (e) => {
     this.setState({ email: e.target.value });
   };
   addTokens = (data) => {
-    this.setState({ token: data.token });
+    this.setState({ token: data.accessToken });
     this.setState({ refreshToken: data.refreshToken });
   };
   login = async () => {
@@ -48,7 +52,7 @@ class Login extends Component {
     localStorage.setItem("token", this.state.token);
     localStorage.setItem("refreshToken", this.state.refreshToken);
     console.log(this.state.token);
-    window.location = "/home";
+    window.location = "/profile";
   };
   render() {
     return (
@@ -95,9 +99,12 @@ class Login extends Component {
                 </button>
               </Row>
               <hr />
-              <Row className=" d-flex justify-content-center mt-2">
-                <GrFacebook className="blue mr-2 mt-1" />{" "}
-                <p className="blue"> Log In</p>
+              <Row
+                className=" d-flex justify-content-center mt-2"
+               
+              >
+                <GrFacebook   className="blue mr-2 mt-1" />{" "}
+               <a href = "http://localhost:9999/users/googleLogin" className="blue"> Log In</a>
               </Row>
               <Row className=" d-flex justify-content-center mb-3">
                 <p className="blue"> Forgotten password?</p>
@@ -105,13 +112,13 @@ class Login extends Component {
             </Container>
             <Container className="registerContainer mt-3">
               <Row className=" d-flex justify-content-center mt-4">
-                <p className="registrationText"> Do not have an account?</p>
-                <p
+                <p className="registrationText"  onClick={() => (window.location = "/register")}> Do not have an account?</p>
+                <a
                   className="blue ml-2"
                   onClick={() => (window.location = "/register")}
                 >
                   Register
-                </p>
+                </a>
               </Row>
             </Container>
             <Row className=" d-flex justify-content-center mt-2">
