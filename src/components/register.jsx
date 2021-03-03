@@ -13,7 +13,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import logo from "./instagram.png";
 import { GrFacebook } from "react-icons/gr";
 import "./register.css";
-import downloadAppStore from "../assets/downloadAPPstore.png"
+import downloadAppStore from "../assets/downloadAPPstore.png";
 class Register extends Component {
   state = {
     email: "",
@@ -109,14 +109,22 @@ class Register extends Component {
                 </button>
               </Row>
 
-              
               <Row className=" d-flex justify-content-center mb-3">
                 <p className="blue"> Forgotten password?</p>
               </Row>
               <p className="bigText2">
                 When you register, you agree to our Terms. Learn how we collect,
                 use and share your data in our Data Policy, and how we use
-                cookies and similar technologies in our <strong onClick = {()=>window.location="https://help.instagram.com/1896641480634370?ref=ig"}>Cookie Policy</strong>.{" "}
+                cookies and similar technologies in our{" "}
+                <strong
+                  onClick={() =>
+                    (window.location =
+                      "https://help.instagram.com/1896641480634370?ref=ig")
+                  }
+                >
+                  Cookie Policy
+                </strong>
+                .{" "}
               </p>
             </Container>
             <Container className="registerContainer3 mt-3">
@@ -134,10 +142,7 @@ class Register extends Component {
               <p className="downloadText">Download the app</p>
             </Row>
             <Row className=" d-flex justify-content-center buttons">
-              <img
-                className="downloadBtn1"
-                src={downloadAppStore}
-              />
+              <img className="downloadBtn1" src={downloadAppStore} />
               <img
                 className="downloadBtn"
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/1200px-Google_Play_Store_badge_EN.svg.png"

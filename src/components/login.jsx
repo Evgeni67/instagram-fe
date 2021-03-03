@@ -1,15 +1,7 @@
 import React, { Component } from "react";
-import {
-  Row,
-  Col,
-  Container,
-  Navbar,
-  Nav,
-  Form,
-  FormControl,
-} from "react-bootstrap";
+import { Row, Col, Container } from "react-bootstrap";
 import downloadAppStore from "../assets/downloadAPPstore.png";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+// import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import logo from "./instagram.png";
 import { GrFacebook } from "react-icons/gr";
 import "./login.css";
@@ -60,7 +52,7 @@ class Login extends Component {
         <Row className="d-flex justify-content-center mt-5">
           <Col sm={3} />
           <Col sm={3}>
-            <img src={logo} className="loginImage" />
+            <img src={logo} className="loginImage" alt="img" />
           </Col>
           <Col sm={3} className>
             <Container className="loginContainer">
@@ -68,6 +60,7 @@ class Login extends Component {
                 <img
                   className="containerPhoto"
                   src="https://logos-world.net/wp-content/uploads/2020/04/Instagram-Logo.png"
+                  alt="img"
                 />
               </Row>
               <Row className=" d-flex justify-content-center mb-2">
@@ -99,12 +92,15 @@ class Login extends Component {
                 </button>
               </Row>
               <hr />
-              <Row
-                className=" d-flex justify-content-center mt-2"
-               
-              >
-                <GrFacebook   className="blue mr-2 mt-1" />{" "}
-               <a href = "http://localhost:9999/users/googleLogin" className="blue"> Log In</a>
+              <Row className=" d-flex justify-content-center mt-2">
+                <GrFacebook className="blue mr-2 mt-1" />{" "}
+                <a
+                  href="http://localhost:9999/users/googleLogin"
+                  className="blue"
+                >
+                  {" "}
+                  Log In
+                </a>
               </Row>
               <Row className=" d-flex justify-content-center mb-3">
                 <p className="blue"> Forgotten password?</p>
@@ -112,7 +108,13 @@ class Login extends Component {
             </Container>
             <Container className="registerContainer mt-3">
               <Row className=" d-flex justify-content-center mt-4">
-                <p className="registrationText"  onClick={() => (window.location = "/register")}> Do not have an account?</p>
+                <p
+                  className="registrationText"
+                  onClick={() => (window.location = "/register")}
+                >
+                  {" "}
+                  Do not have an account?
+                </p>
                 <a
                   className="blue ml-2"
                   onClick={() => (window.location = "/register")}
@@ -129,6 +131,7 @@ class Login extends Component {
               <img
                 className="downloadBtn"
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/1200px-Google_Play_Store_badge_EN.svg.png"
+                alt="img"
               />
             </Row>
           </Col>

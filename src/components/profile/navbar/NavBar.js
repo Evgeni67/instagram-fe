@@ -1,19 +1,17 @@
 import React from "react";
-import { Row,Container } from "react-bootstrap";
+import { Row } from "react-bootstrap";
 import logo from "../../../assets/Instagram-Logo.png";
 import { IoHomeOutline } from "react-icons/io5";
 import { FiSend, FiHeart } from "react-icons/fi";
 import { AiOutlineCompass } from "react-icons/ai";
 import "./NavBar.css";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   return (
-    <> 
+    <>
       <Row>
-        
         <div id="navbar">
-         
-
           <div id="navbar-left">
             <img id="logo" src={logo} alt="ig-logo" />
           </div>
@@ -25,15 +23,15 @@ const NavBar = () => {
             <FiSend style={{ width: "22px", height: "25px" }} />
             <AiOutlineCompass style={{ width: "22px", height: "25px" }} />
             <FiHeart style={{ width: "22px", height: "25px" }} />
-            <img
-              id="profile-pic-nav"
-              src="https://via.placeholder.com/150"
-              alt="profile-pic"
-            />
+            <Link to="/profile">
+              <img
+                id="profile-pic-nav"
+                src="https://via.placeholder.com/150"
+                alt="profile-pic"
+              />
+            </Link>
           </div>
-       
         </div>
-        
       </Row>
       <div id="border-bottom"></div>
     </>

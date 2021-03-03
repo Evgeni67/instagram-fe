@@ -36,7 +36,6 @@ class App extends Component {
               <NavBar />
               {/* <Stories  /> */}
 
-
               <Row
                 style={{
                   marginLeft: "70px",
@@ -49,9 +48,7 @@ class App extends Component {
                 </Col>
                 <Col md={3} className="d-sm-none d-md-block">
                   <SideBar />
-
-
-      </Col>
+                </Col>
               </Row>
             </div>
           </Route>
