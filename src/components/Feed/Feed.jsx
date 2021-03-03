@@ -30,6 +30,7 @@ const mapDispatchToProps = (dispatch) => ({
           type: "SET_ME",
           payload: me,
         });
+        console.log("me",me)
       } else {
         dispatch({
           type: "SET_ERROR",
@@ -110,6 +111,7 @@ class Feed extends Component {
   render() {
     const { posts, name, surname, userName, email, follows } = this.props.me.me;
     const { myFollowedOnes} = this.props.me;
+    console.log(this.props.me)
     
 
     return (
