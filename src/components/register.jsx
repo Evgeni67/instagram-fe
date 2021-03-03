@@ -20,6 +20,8 @@ class Register extends Component {
     password: "",
     token: "",
     refreshToken: "",
+    fullname:"",
+    username:""
   };
   changePassword = (e) => {
     this.setState({ password: e.target.value });
@@ -28,16 +30,24 @@ class Register extends Component {
   changeEmail = (e) => {
     this.setState({ email: e.target.value });
   };
+  changeUserName = (e) => {
+    this.setState({ username: e.target.value });
+  };
+  changeFullName = (e) => {
+    this.setState({ fullname: e.target.value });
+  };
   addTokens = (data) => {
     this.setState({ token: data.token });
     this.setState({ token: data.refreshToken });
   };
-  login = async () => {
+  register = async () => {
     this.setState({ loading: true });
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
+        nameNsurname:this.state.fullname,
+        userName:this.state.username,
         password: this.state.password,
         email: this.state.email,
       }),
@@ -72,7 +82,7 @@ class Register extends Component {
                 <input
                   autocomplete="off"
                   type="email"
-                  className="emailInput"
+                  className="input"
                   placeholder="Mobile number or email"
                   onChange={(e) => this.changeEmail(e)}
                 ></input>
@@ -80,33 +90,33 @@ class Register extends Component {
               <Row className=" d-flex justify-content-center mb-2">
                 <input
                   autocomplete="off"
-                  type="email"
-                  className="emailInput"
+                  type="name"
+                  className="input"
                   placeholder="Full name"
-                  onChange={(e) => this.changeEmail(e)}
+                  onChange={(e) => this.changeFullName(e)}
                 ></input>
               </Row>
               <Row className=" d-flex justify-content-center mb-2">
                 <input
                   autocomplete="off"
-                  type="email"
-                  className="emailInput"
-                  placeholder="User name"
-                  onChange={(e) => this.changeEmail(e)}
+                  type="username"
+                  className="input"
+                  placeholder="username"
+                  onChange={(e) => this.changeUserName(e)}
                 ></input>
               </Row>
               <Row className=" d-flex justify-content-center mb-2">
                 <input
                   autocomplete="off"
                   type="password"
-                  className="emailInput"
-                  placeholder="email"
-                  onChange={(e) => this.changeEmail(e)}
+                  className="input"
+                  placeholder="password"
+                  onChange={(e) => this.changePassword(e)}
                 ></input>
               </Row>
 
               <Row className=" d-flex justify-content-center mb-4">
-                <button className="loginBtn" onClick={() => this.login()}>
+                <button className="loginBtn" onClick={() => this.register()}>
                   Register
                 </button>
               </Row>
