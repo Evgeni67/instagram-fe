@@ -14,8 +14,7 @@ const mapStateToProps = (state) => state;
 const mapDispatchToProps = (dispatch) => ({
   fetchMewithThunk: (id) =>
     dispatch(async (dispatch) => {
-      const token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDNmNmYzM2QwYTFmMDIxZDExNjMwYjEiLCJpYXQiOjE2MTQ3Njk5OTUsImV4cCI6MTYxNTM3NDc5NX0.tNf_qPBp5yKguRdzV4kW7b4FHSn47i_tcXV8WFidCaU";
+      const token =localStorage.getItem("token")
       const url = process.env.REACT_APP_URL;
       const response = await fetch(url + "/users/me", {
         headers: {
@@ -41,8 +40,7 @@ const mapDispatchToProps = (dispatch) => ({
   fetchMyFollowedOneswithThunk: (id) =>
     dispatch(async (dispatch) => {
       const url = process.env.REACT_APP_URL;
-      const token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDNmNmYzM2QwYTFmMDIxZDExNjMwYjEiLCJpYXQiOjE2MTQ3Njk5OTUsImV4cCI6MTYxNTM3NDc5NX0.tNf_qPBp5yKguRdzV4kW7b4FHSn47i_tcXV8WFidCaU";
+      const token =localStorage.getItem("token")
       const response = await fetch(url + "/posts/fromFollowed", {
         headers: {
           Authorization: "Bearer " + token,
@@ -68,8 +66,8 @@ const mapDispatchToProps = (dispatch) => ({
   fetchUserswithThunk: (id) =>
     dispatch(async (dispatch) => {
       const url = process.env.REACT_APP_URL;
-      const token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDNmNmYzM2QwYTFmMDIxZDExNjMwYjEiLCJpYXQiOjE2MTQ3Njk5OTUsImV4cCI6MTYxNTM3NDc5NX0.tNf_qPBp5yKguRdzV4kW7b4FHSn47i_tcXV8WFidCaU";
+
+      const token =localStorage.getItem("token")
       const response = await fetch(url + "/users", {
         headers: {
           "Authorization":"Bearer " +
