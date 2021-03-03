@@ -1,44 +1,43 @@
 import { createStore, combineReducers, compose, applyMiddleware } from "redux";
-import uiReducers from "../reducers/ui";
-import playerReducers from "../reducers/player";
-import userReducers from "../reducers/user";
+import postsReducers from "../reducers/posts";
+import usersReducers from "../reducers/users";
+import meReducers from "../reducers/me";
+
 import thunk from "redux-thunk";
 
 const composedEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export const initialState = {
-  user: {
-    liked: [],
-    username: "",
-    password: "",
-    email: "",
-    playlists: [],
-    showModal: false,
+  me: {
+    me:{},
+    myfollowedOnes:[]
+    // email: "",
+    // userName: "",
+    // name:"",
+    // surname:"",
+    // profilePicUrl: "",
+    // myposts: [],
+    // comments: [],
+    // likedPosts: [],
+    // likedComments: [],
+    // follows: [],
+    // followers:[]
   },
-  player: {
-    selectedSong: null,
-    queue: [],
-    currentlyPlaying: false,
-  },
-  ui: {
-    artists: {
-      artistList: [],
-    },
-    albums: [],
-    artist: {},
-    tracks: [],
-    songs: {
-      songList: [],
-      selectedAlbum: {},
-    },
-    loading: false,
-  },
+
+  users:[],
+   
+
+  posts:[]
+
+  
+  
 };
 
 const combinedReducer = combineReducers({
-  user: userReducers,
-  player: playerReducers,
-  ui: uiReducers,
+  users: usersReducers,
+  me: meReducers,
+  posts: postsReducers,
+
 });
 
 export default function configureStore() {

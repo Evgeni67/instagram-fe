@@ -6,13 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Provider } from "react-redux";
 import configureStore from "./store";
 
-// ReactDOM.render(
-  
-//   <React.StrictMode>
-//     <App />
-//   </React.StrictMode>,
-//   document.getElementById("root")
-// );
+ReactDOM.render(
 
 <Provider store={configureStore()}>
 <BrowserRouter>
@@ -20,3 +14,4 @@ import configureStore from "./store";
 </BrowserRouter>
 </Provider>,
 document.getElementById("root")
+);
