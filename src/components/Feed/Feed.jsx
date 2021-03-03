@@ -104,7 +104,6 @@ class Feed extends Component {
                    
                         <Form className="cursor " >
                         <Form.Control  type="text" placeholder="Add comment..." className="rq-form-element  " />
-                        <i></i>
                         </Form>
                    <p className="mb-1 mt-2 ml-auto"><span>
                         <a className="a-tags font-weight-bold " style={{color:"#0095F6"}} >Share </a>
