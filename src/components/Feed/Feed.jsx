@@ -115,7 +115,7 @@ class Feed extends Component {
     return (
       <>
         <Container className="general-font">
-          {/* {follows.length > 0 && follows.map((user)=> { */}
+          {myFollowedOnes && myFollowedOnes.length > 0 && follows.map((post)=> {
           <Row className="cols-12">
             <Col>
               <Card>
@@ -124,13 +124,13 @@ class Feed extends Component {
                   style={{ backgroundColor: "#FFFFFF" }}
                 >
                   <Image
-                    src="https://images.unsplash.com/photo-1554151228-14d9def656e4?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=666&q=80"
+                    src={post.user.profilePicUrl}
                     roundedCircle
                     className="profilePic mr-3"
                   />
                   <p className="p-0 mt-2 general-font font-weight-bold">
                     {" "}
-                    {email}
+                    {post.user.userName}
                   </p>
                   <a className=" ml-auto a-tags ">
                     {" "}
@@ -140,7 +140,7 @@ class Feed extends Component {
                 <div className=" image">
                   <Card.Img
                     variant="top"
-                    src="https://images.unsplash.com/photo-1484100356142-db6ab6244067?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1562&q=80"
+                    src={post.imageUrl}
                     className="img img-responsive full-width"
                   />
                 </div>
@@ -172,7 +172,7 @@ class Feed extends Component {
                   <Card.Text>
                     <p className="p-0 m-0  mr-2 d-inline general-font font-weight-bold a-tags">
                       {" "}
-                      username
+                      {post.user.userName}
                     </p>
                     <p
                       className={
@@ -180,10 +180,7 @@ class Feed extends Component {
                         (this.state.truncate === false ? "" : "text-truncate")
                       }
                     >
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Blanditiis amet et soluta quos aliquam voluptate! In minus
-                      iusto animi, earum voluptatem ipsam beatae tenetur natus
-                      rerum aliquam illum velit id.
+                      {post.text}
                     </p>
                     {this.state.truncate === true && (
                       <span>
@@ -204,21 +201,17 @@ class Feed extends Component {
                               this.setState({ commentModalShow: true })
                             }
                           >
-                            see all the {} comments .
+                            see all the {post.comments.length} comments .
                           </a>
                         </span>
-                        {this.state.comments.slice(0, 2).map((comment) => (
+                        {post.comments.slice(0, 2).map((comment) => (
                           <div>
                             <p className="p-0 m-0  mr-2 d-inline general-font font-weight-bold">
                               {" "}
-                              {comment.username}
+                              {comment.user}
                             </p>
                             <p className="m-0 p-0  ">
-                              Lorem ipsum dolor sit amet consectetur adipisicing
-                              elit. Blanditiis amet et soluta quos aliquam
-                              voluptate! In minus iusto animi, earum voluptatem
-                              ipsam beatae tenetur natus rerum aliquam illum
-                              velit id.
+                            {comment.text}
                             </p>
                           </div>
                         ))}
@@ -262,7 +255,7 @@ class Feed extends Component {
               </Card>
             </Col>
           </Row>
-          {/* })} */}
+        })} 
         </Container>
       </>
     );
