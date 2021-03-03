@@ -52,7 +52,7 @@ class Login extends Component {
     localStorage.setItem("token", this.state.token);
     localStorage.setItem("refreshToken", this.state.refreshToken);
     console.log(this.state.token);
-    window.location = "/home";
+    window.location = "/profile";
   };
   render() {
     return (
@@ -112,13 +112,13 @@ class Login extends Component {
             </Container>
             <Container className="registerContainer mt-3">
               <Row className=" d-flex justify-content-center mt-4">
-                <p className="registrationText"> Do not have an account?</p>
-                <p
+                <p className="registrationText"  onClick={() => (window.location = "/register")}> Do not have an account?</p>
+                <a
                   className="blue ml-2"
                   onClick={() => (window.location = "/register")}
                 >
                   Register
-                </p>
+                </a>
               </Row>
             </Container>
             <Row className=" d-flex justify-content-center mt-2">

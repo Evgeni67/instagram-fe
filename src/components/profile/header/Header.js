@@ -5,11 +5,8 @@ import "./Header.css";
 class Header extends Component {
   componentDidMount = async () => {
     const queryString = window.location.search;
-console.log(queryString)
 const urlParams = new URLSearchParams(queryString);
 console.log(urlParams.get("accessToken"))
-console.log(urlParams.get("refreshToken"))
-    console.log(localStorage.getItem("token"));
      if(!urlParams.has("accessToken")){
       const requestOptions = {
         method: "GET",
