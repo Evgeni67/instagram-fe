@@ -194,9 +194,9 @@ class Feed extends Component {
     console.log("myfollowedOnes", myfollowedOnes);
     return (
       <>
-                       {" "}
+                       
         <Container className="general-font">
-                                               {" "}
+                                               
           {myfollowedOnes &&
             myfollowedOnes.length > 0 &&
             myfollowedOnes.map(
@@ -204,101 +204,101 @@ class Feed extends Component {
                 post // console.log("one post from I follow",post)
               ) => (
                 <Row className="cols-12 post">
-                                         {" "}
+                                         
                   <Col>
-                                               {" "}
+                                               
                     <Card>
-                                                     {" "}
+                                                     
                       <Card.Header
                         className="d-flex m-0"
                         style={{ backgroundColor: "#FFFFFF" }}
                       >
-                                                           {" "}
+                                                           
                         <Image
                           src={post.user.profilePicUrl}
                           roundedCircle
                           className="profilePic mr-3"
                         />
-                                                           {" "}
+                                                           
                         <p className="p-0 mt-2 general-font font-weight-bold">
                                                                                
                                                     {post.user.userName}       
-                                                     {" "}
+                                                     
                         </p>
-                                                           {" "}
+                                                           
                         <a className=" ml-auto a-tags ">
                                                                                
                                                     <BsThreeDots />             
-                                               {" "}
+                                               
                         </a>
-                                                       {" "}
+                                                       
                       </Card.Header>
-                                                     {" "}
+                                                     
                       <div className=" image">
-                                                           {" "}
+                                                           
                         <Card.Img
                           variant="top"
                           src={post.imageUrl}
                           className="img img-responsive full-width"
                         />
-                                                       {" "}
+                                                       
                       </div>
-                                                     {" "}
+                                                     
                       <Card.Body>
-                                                           {" "}
+                                                           
                         <div className="d-flex icons ">
-                                                                 {" "}
+                                                                 
                           <FiHeart className="    mr-3" />
-                                                                 {" "}
+                                                                 
                           <FaRegComment className=" mr-3" />
-                                                                 {" "}
+                                                                 
                           <FiSend className=" mr-3" />
-                                                                 {" "}
+                                                                 
                           <RiBookmarkLine className=" ml-auto" />               
-                                             {" "}
+                                             
                         </div>
-                                                           {" "}
+                                                           
                         <Card.Title>
-                                                                 {" "}
+                                                                 
                           <Image
                             src="https://images.unsplash.com/photo-1554151228-14d9def656e4?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=666&q=80"
                             roundedCircle
                             className="profilePic-mini mr-1"
                           />
-                                                                 {" "}
+                                                                 
                           <p className="d-inline general-font">
-                                                                       {" "}
+                                                                       
                             <span>
-                                                                             {" "}
+                                                                             
                               <a className="a-tags font-weight-bold">
                                 somebody
                               </a>
-                                                                         {" "}
-                            </span>{" "}
+                                                                         
+                            </span>
                                                                         &      
-                                                                 {" "}
+                                                                 
                             <span>
-                                                                             {" "}
+                                                                             
                               <a className="a-tags font-weight-bold">
                                 260 people
                               </a>
-                                                                         {" "}
-                            </span>{" "}
+                                                                         
+                            </span>
                                                                         liked
-                            this                                        {" "}
+                            this                                        
                           </p>
-                                                             {" "}
+                                                             
                         </Card.Title>
-                                                           {" "}
+                                                           
                         <Card.Text>
-                                                                 {" "}
+                                                                 
                           <p className="p-0 m-0    mr-2 d-inline general-font font-weight-bold a-tags">
                                                                                
-                                                               {" "}
+                                                               
                             {post.user.userName}                               
-                                   {" "}
+                                   
                           </p>
-                                                                 {" "}
+                                                                 
                           <p
                             className={
                               "m-0 p-0    " +
@@ -307,13 +307,13 @@ class Feed extends Component {
                                 : "text-truncate")
                             }
                           >
-                                                                       {" "}
-                            {post.text}                                       {" "}
+                                                                       
+                            {post.text}                                       
                           </p>
-                                                                 {" "}
+                                                                 
                           {this.state.truncate === true && (
                             <span>
-                                                                             {" "}
+                                                                             
                               <a
                                 className="a-tags text-muted"
                                 onClick={() =>
@@ -322,42 +322,42 @@ class Feed extends Component {
                               >
                                                                                
                                     see more                                    
-                                           {" "}
+                                           
                               </a>
-                                                                         {" "}
+                                                                         
                             </span>
                           )}
                                                                   <br />       
-                                                         {" "}
+                                                         
                           {post.comments.slice(0, 2).map((comment) => (
                             <div>
                                                                                
-                                   {" "}
+                                   
                               <p className="p-0 m-0    mr-2 d-inline general-font font-weight-bold">
                                                                                
                                                                                
-                                                      CommentUser:{" "}
+                                                      CommentUser:
                                 {comment.user}                                 
-                                                     {" "}
+                                                     
                               </p>
                                                                                
-                                   {" "}
+                                   
                               <p className="m-0 p-0    ">
                                                                                
                                         Comment Text:{comment.text}             
-                                                                         {" "}
+                                                                         
                               </p>
                                                                                
-                               {" "}
+                               
                             </div>
                           ))}
-                                                                 {" "}
+                                                                 
                           {post.comments && post.comments.length > 0 && (
                             <>
-                                                                             {" "}
+                                                                             
                               <span>
                                                                                
-                                   {" "}
+                                   
                                 <a
                                   className="a-tags text-muted"
                                   onClick={() =>
@@ -365,46 +365,46 @@ class Feed extends Component {
                                   }
                                 >
                                                                                
-                                            see all the {post.comments.length}{" "}
+                                            see all the {post.comments.length}
                                   comments .                                    
-                                                 {" "}
+                                                 
                                 </a>
-                                                                               {" "}
+                                                                               
                               </span>
                                                                                
-                                                                       {" "}
+                                                                       
                             </>
                           )}
-                                                                 {" "}
+                                                                 
                           <p
                             className="text-muted mt-2 mb-0"
                             style={{ fontSize: "10px" }}
                           >
                                                                                
                                                                 22 MINS AGO    
-                                                               {" "}
+                                                               
                           </p>
-                                                             {" "}
+                                                             
                         </Card.Text>
-                                                       {" "}
+                                                       
                       </Card.Body>
-                                                     {" "}
+                                                     
                       <Card.Footer
                         className="d-flex m-0"
                         style={{ backgroundColor: "#FFFFFF" }}
                       >
                                                                                
-                                       {" "}
+                                       
                         <Form className="cursor ">
-                                                             {" "}
+                                                             
                           <Form.Row>
-                                                                   {" "}
+                                                                   
                             <Col xs={1}>
                               <VscSmiley className="mr-3 icons mt-2" />
                             </Col>
-                                                               {" "}
+                                                               
                             <Col xs={8}>
-                                                                     {" "}
+                                                                     
                               <Form.Control
                                 id="text"
                                 type="text"
@@ -413,62 +413,62 @@ class Feed extends Component {
                                 value={this.state.comment.text}
                                 onChange={this.updateField}
                               />
-                                                                 {" "}
+                                                                 
                             </Col>
-                                                               {" "}
+                                                               
                             <Col xs={3}>
                                                                                
-                                               {" "}
+                                               
                               <p
                                 onClick={() => this.submitForm(post._id)}
                                 className="mb-1 mt-2 ml-auto d-inline"
                               >
-                                                                       {" "}
+                                                                       
                                 <span>
-                                                                             {" "}
+                                                                             
                                   <a
                                     className="a-tags font-weight-bold    "
                                     style={{ color: "#0095F6" }}
                                   >
                                                                                
                                         Share                                  
-                                             {" "}
+                                             
                                   </a>
-                                                                         {" "}
-                                </span>{" "}
-                                                                   {" "}
+                                                                         
+                                </span>
+                                                                   
                               </p>
                                                                                
-                                                   {" "}
+                                                   
                             </Col>
-                                                               {" "}
+                                                               
                           </Form.Row>
-                                                             {" "}
+                                                             
                         </Form>
-                                                       {" "}
+                                                       
                       </Card.Footer>
-                                                 {" "}
+                                                 
                     </Card>
-                                           {" "}
+                                           
                   </Col>
-                                     {" "}
+                                     
                 </Row>
               ) //
             )}
-                   {" "}
+                   
           {this.state.showModal && (
             <div id="modal-background">
-                                 {" "}
+                                 
               <PostModal
                 showModal={this.state.showModal}
                 closeModal={() => this.setState.ShowModal(false)}
               />
-                             {" "}
+                             
             </div>
           )}
-                         {" "}
+                         
         </Container>
-                   {" "}
+                   
       </>
     );
   }

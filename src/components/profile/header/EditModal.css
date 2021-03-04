@@ -13,21 +13,24 @@
 
 #editModal-top {
   position: relative;
-  top: 130px;
+  top: 300px;
   color: #fff;
 }
 
 #editModal-content {
-  background-color: #fff;
-  width: 800px;
-  height: 500px;
+  background-color: transparent;
+  width: 500px;
+  height: 250px;
   margin: auto;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 #editModal-btns-wrapper {
   position: relative;
-  bottom: 170px;
+  bottom: 250px;
 }
 
 #editModal-btns-wrapper button {
@@ -48,6 +51,11 @@
 }
 
 .editModal-inputs {
+  background: transparent;
   width: 150px;
   height: 50px;
+  border: none;
+  border-bottom: 1px solid black;
+  outline-width: 0;
+  color: #fff;
 }

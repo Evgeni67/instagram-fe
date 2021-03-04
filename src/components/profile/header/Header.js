@@ -25,7 +25,6 @@ class Header extends Component {
   }
 
   render() {
-    console.log("===> HERE <===", this.props.me.me);
     return (
       <>
         <div id="profile-infos">
@@ -67,11 +66,10 @@ class Header extends Component {
             </div>
           </div>
         </div>
-        <div id="stories">some stories here and shit....</div>
+        <div id="stories">some stories here</div>
         <hr></hr>
         {this.state.showModal ? (
           <EditModal
-            fullName={this.props.me.me.fullName}
             handleShow={this.handleShow}
             handleClose={this.handleClose}
           />
