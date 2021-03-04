@@ -5,6 +5,7 @@ import { RiBookmarkLine } from "react-icons/ri";
 import { FaRegComment } from "react-icons/fa";
 import { VscSmiley } from "react-icons/vsc";
 import { connect } from "react-redux";
+import PostModal from "../profile/posts/Modal";
 
 import { Row, Col, Container, Card, Image, Form } from "react-bootstrap";
 import "./feed.css";
@@ -104,7 +105,7 @@ class Feed extends Component {
   state = {
     truncate: true,
     comments: [],
-    commentModalShow: false,
+    showModal: false,
   };
   render() {
     const { posts, name, surname, userName, email, follows } = this.props.me.me;
@@ -198,7 +199,7 @@ class Feed extends Component {
                           <a
                             className="a-tags text-muted"
                             onClick={() =>
-                              this.setState({ commentModalShow: true })
+                              this.setState({ showModal: true })
                             }
                           >
                             see all the {post.comments.length} comments .
@@ -256,6 +257,15 @@ class Feed extends Component {
             </Col>
           </Row>
         })} 
+
+     {this.state.showModal && (
+        <div id="modal-background">
+          <PostModal
+            showModal={this.state.showModal}
+            closeModal={() => this.setState.ShowModal(false)}
+          />
+        </div>
+      )}
         </Container>
       </>
     );

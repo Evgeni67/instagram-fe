@@ -16,6 +16,8 @@ const Discover = (props) => {
 
   return (
     <>
+
+   
       <div id="posts-section">
     
       <div id="posts-grid" className="container">
@@ -31,14 +33,14 @@ const Discover = (props) => {
           </div>
    
       </div>
-      {/* {showModal && (
+      {showModal && (
         <div id="modal-background">
           <PostModal
             showModal={showModal}
             closeModal={() => setShowModal(false)}
           />
         </div>
-      )} */}
+      )}
     </>
   );
 };
