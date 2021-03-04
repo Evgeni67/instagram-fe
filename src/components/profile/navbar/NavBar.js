@@ -4,6 +4,7 @@ import logo from "../../../assets/Instagram-Logo.png";
 import { IoHomeOutline } from "react-icons/io5";
 import { FiSend, FiHeart } from "react-icons/fi";
 import { AiOutlineCompass } from "react-icons/ai";
+
 import { Link } from "react-router-dom";
 import "./NavBar.css";
 
@@ -19,6 +20,7 @@ const NavBar = () => {
             <input id="search-input" placeholder="search" type="text" />
           </div>
           <div id="navbar-right">
+
             <Link to="/feed">
               <IoHomeOutline
                 style={{ width: "22px", height: "25px", color: "black" }}

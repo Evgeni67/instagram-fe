@@ -49,7 +49,11 @@ const mapDispatchToProps = (dispatch) => ({
       });
 
       const myFollowedOnes = await response.json();
+<<<<<<< HEAD
       // console.log("I foloow:",myFollowedOnes)
+=======
+      console.log("The posts from people who I follow ",myFollowedOnes)
+>>>>>>> 20230bd35dbf1b916583fa973950233f25481cbf
 
       if (response.ok) {
         dispatch({
@@ -106,12 +110,19 @@ class Feed extends Component {
   };
   render() {
     const { posts, name, surname, userName, email, follows } = this.props.me.me;
+<<<<<<< HEAD
     const { myFollowedOnes } = this.props.me;
     // console.log(this.props.me)
+=======
+    const { myfollowedOnes} = this.props.me;
+    console.log("myfollowedOnes",myfollowedOnes)
+    
+>>>>>>> 20230bd35dbf1b916583fa973950233f25481cbf
 
     return (
       <>
         <Container className="general-font">
+<<<<<<< HEAD
           {myFollowedOnes &&
             myFollowedOnes.length > 0 &&
             follows.map((post) => {
@@ -121,6 +132,77 @@ class Feed extends Component {
                     <Card.Header
                       className="d-flex m-0"
                       style={{ backgroundColor: "#FFFFFF" }}
+=======
+
+         
+          {myfollowedOnes && myfollowedOnes.length > 0 && myfollowedOnes.map((post)=> 
+            // console.log("one post from I follow",post)
+           
+          
+          <Row className="cols-12 post">
+            <Col>
+              <Card>
+                <Card.Header
+                  className="d-flex m-0"
+                  style={{ backgroundColor: "#FFFFFF" }}
+                >
+                  <Image
+                    src={post.user.profilePicUrl}
+                    roundedCircle
+                    className="profilePic mr-3"
+                  />
+                  <p className="p-0 mt-2 general-font font-weight-bold">
+                    {" "}
+                    {post.user.userName}
+                  </p>
+                  <a className=" ml-auto a-tags ">
+                    {" "}
+                    <BsThreeDots />
+                  </a>
+                </Card.Header>
+                <div className=" image">
+                  <Card.Img
+                    variant="top"
+                    src={post.imageUrl}
+                    className="img img-responsive full-width"
+                  />
+                </div>
+
+                <Card.Body>
+                  <div className="d-flex icons ">
+                    <FiHeart className="  mr-3" />
+                    <FaRegComment className=" mr-3" />
+                    <FiSend className=" mr-3" />
+                    <RiBookmarkLine className=" ml-auto" />
+                  </div>
+                  <Card.Title>
+                    <Image
+                      src="https://images.unsplash.com/photo-1554151228-14d9def656e4?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=666&q=80"
+                      roundedCircle
+                      className="profilePic-mini mr-1"
+                    />
+                    <p className="d-inline general-font">
+                      <span>
+                        <a className="a-tags font-weight-bold">somebody</a>
+                      </span>{" "}
+                      &{" "}
+                      <span>
+                        <a className="a-tags font-weight-bold">260 people</a>
+                      </span>{" "}
+                      liked this
+                    </p>
+                  </Card.Title>
+                  <Card.Text>
+                    <p className="p-0 m-0  mr-2 d-inline general-font font-weight-bold a-tags">
+                      {" "}
+                      {post.user.userName}
+                    </p>
+                    <p
+                      className={
+                        "m-0 p-0  " +
+                        (this.state.truncate === false ? "" : "text-truncate")
+                      }
+>>>>>>> 20230bd35dbf1b916583fa973950233f25481cbf
                     >
                       <Image
                         src={post.user.profilePicUrl}
@@ -223,6 +305,7 @@ class Feed extends Component {
                           className="text-muted mt-2 mb-0"
                           style={{ fontSize: "10px" }}
                         >
+<<<<<<< HEAD
                           {" "}
                           22 MINS AGO
                         </p>
@@ -243,6 +326,14 @@ class Feed extends Component {
                         />
                       </Form>
                       <p className="mb-1 mt-2 ml-auto">
+=======
+                          see more
+                        </a>
+                      </span>
+                    )}
+                    {post.comments&& post.comments.length > 0 && (
+                      <>
+>>>>>>> 20230bd35dbf1b916583fa973950233f25481cbf
                         <span>
                           <a
                             className="a-tags font-weight-bold "
@@ -250,6 +341,7 @@ class Feed extends Component {
                           >
                             Share{" "}
                           </a>
+<<<<<<< HEAD
                         </span>{" "}
                       </p>
                     </Card.Footer>
@@ -257,6 +349,67 @@ class Feed extends Component {
                 </Col>
               </Row>;
             })}
+=======
+                        </span>
+                        {post.comments.slice(0, 2).map((comment) => (
+                          <div>
+                            <p className="p-0 m-0  mr-2 d-inline general-font font-weight-bold">
+                              {" "}
+                              {comment.user}
+                            </p>
+                            <p className="m-0 p-0  ">
+                            {comment.text}
+                            </p>
+                          </div>
+                        ))}
+                      </>
+                    )}
+
+                    <p
+                      className="text-muted mt-2 mb-0"
+                      style={{ fontSize: "10px" }}
+                    >
+                      {" "}
+                      22 MINS AGO
+                    </p>
+                  </Card.Text>
+                </Card.Body>
+
+                <Card.Footer
+                  className="d-flex m-0"
+                  style={{ backgroundColor: "#FFFFFF" }}
+                >
+                  <VscSmiley className="mr-3 icons mt-2" />
+
+                  <Form className="cursor ">
+                    <Form.Control
+                      type="text"
+                      placeholder="Add comment..."
+                      className="rq-form-element  "
+                    />
+                  </Form>
+                  <p className="mb-1 mt-2 ml-auto">
+                    <span>
+                      <a
+                        className="a-tags font-weight-bold "
+                        style={{ color: "#0095F6" }}
+                      >
+                        Share{" "}
+                      </a>
+                    </span>{" "}
+                  </p>
+                </Card.Footer>
+              </Card>
+            </Col>
+          </Row>
+        
+      
+    
+  // 
+
+        )
+      } 
+>>>>>>> 20230bd35dbf1b916583fa973950233f25481cbf
 
           {this.state.showModal && (
             <div id="modal-background">
