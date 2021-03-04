@@ -3,7 +3,7 @@ import { Row, Col, Container } from "react-bootstrap";
 import downloadAppStore from "../assets/downloadAPPstore.png";
 // import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import logo from "./instagram.png";
-import { GrFacebook } from "react-icons/gr";
+import {FcGoogle as GrFacebook } from "react-icons/fc";
 import "./login.css";
 import axios from "axios";
 
@@ -70,11 +70,11 @@ class Login extends Component {
     return (
       <>
         <Row className="d-flex justify-content-center mt-5">
-          <Col sm={3} />
-          <Col sm={3}>
+          <Col sm={3} m={0} className ="imageLoginCol"/>
+          <Col sm={3} className="imageLoginCol">
             <img src={logo} className="loginImage" alt="img" />
           </Col>
-          <Col sm={3} className>
+          <Col sm={3} s={12}className>
             <Container className="loginContainer">
               <Row className="d-flex justify-content-center ">
                 <img
@@ -112,7 +112,7 @@ class Login extends Component {
                 </button>
               </Row>
               <hr />
-              <Row className=" d-flex justify-content-center mt-2">
+              <Row className=" d-flex justify-content-center mt-4 googleLogin">
                 <GrFacebook className="blue mr-2 mt-1" />{" "}
                 <a
                   href={process.env.REACT_APP_URL + "/users/googleLogin"}
@@ -123,7 +123,7 @@ class Login extends Component {
                 </a>
               </Row>
               <Row className=" d-flex justify-content-center mb-3">
-                <p className="blue"> Forgotten password?</p>
+                <p className="blue forgotten"> Forgotten password?</p>
               </Row>
             </Container>
             <Container className="registerContainer mt-3">
@@ -155,7 +155,7 @@ class Login extends Component {
               />
             </Row>
           </Col>
-          <Col sm={3} />
+          <Col sm={3} m={0} className ="imageLoginCol"/>
         </Row>
       </>
     );
