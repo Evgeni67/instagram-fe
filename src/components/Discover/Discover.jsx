@@ -7,8 +7,7 @@ import PostModal from "../profile/posts/Modal";
 // styles
 import "../profile/posts/Posts.css";
 import { connect } from "react-redux";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+
 
 const mapStateToProps = (state) => state;
 
