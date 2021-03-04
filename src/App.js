@@ -8,6 +8,7 @@ import Posts from "./components/profile/posts/Posts";
 import SideBar from "./components/Feed/SideBar";
 import Stories from "./components/Feed/Stories";
 import Feed from "./components/Feed/Feed";
+import Discover from "./components/Discover/Discover";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Row, Col } from "react-bootstrap";
 class App extends Component {
@@ -18,14 +19,18 @@ class App extends Component {
           <Route exact path="/">
             <Login />
           </Route>
+          <Route exact path="/discover">
+          <NavBar />
+            <Discover/>
+          </Route>
           <Route exact path="/register">
             <Register />
           </Route>
-          <Route exact path="/home">
+          {/* <Route exact path="/home">
             <div className="App" style={{ overflowX: "hidden" }}>
               <NavBar />
             </div>
-          </Route>
+          </Route> */}
           <Route exact path="/profile">
             <NavBar />
             <Header />
