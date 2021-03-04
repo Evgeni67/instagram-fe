@@ -198,7 +198,7 @@ class Feed extends Component {
                         </a>
                       </span>
                     )}
-                    {post.comments&& post.comments.length > 0 && (
+                    {post.comments && post.comments.length > 0 && (
                       <>
                         <span>
                           <a
