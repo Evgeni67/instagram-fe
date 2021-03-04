@@ -41,20 +41,26 @@ class Register extends Component {
     this.setState({ token: data.refreshToken });
   };
   register = async () => {
-    this.setState({ loading: true });
+    try{  this.setState({ loading: true });
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        nameNsurname:this.state.fullname,
+        fullName:this.state.fullname,
         userName:this.state.username,
         password: this.state.password,
         email: this.state.email,
       }),
     };
-    await fetch("http://localhost:9999/users/register", requestOptions)
-      .then((response) => response.json())
-      .then((data) => console.log(data));
+    const url=process.env.REACT_APP_URL
+
+    
+    let response= await fetch(url + "/users/register", requestOptions)
+    if (response.ok){window.location.replace("/login")}
+    else{console.log(response)}}
+    catch(e){console.log(e)}
+  
+      
   };
   render() {
     return (
@@ -72,9 +78,10 @@ class Register extends Component {
                 Register to see photos and videos from your friends{" "}
               </p>
               <Row className=" d-flex justify-content-center mb-4">
-                <button className="loginBtn" onClick={() => this.login()}>
+              
+                <button className="loginBtn" >
                   <GrFacebook className="mr-1 mb-1" />
-                  Register with Facebook
+                  <a href = {process.env.REACT_APP_URL +"/users/googleLogin"} className="text-white"> Log In with Google</a>
                 </button>
               </Row>
               <hr />
@@ -116,7 +123,7 @@ class Register extends Component {
               </Row>
 
               <Row className=" d-flex justify-content-center mb-4">
-                <button className="loginBtn" onClick={() => this.register()}>
+                <button className="loginBtn" onClick={this.register}>
                   Register
                 </button>
               </Row>
