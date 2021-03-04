@@ -1,13 +1,31 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { AiOutlineSetting } from "react-icons/ai";
+import EditModal from "./EditModal";
 import "./Header.css";
 
 const mapStateToProps = (state) => state;
 
 class Header extends Component {
+  constructor(props, context) {
+    super(props, context);
+
+    this.handleShow = this.handleShow.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+    this.state = {
+      showModal: false,
+    };
+  }
+  handleShow() {
+    this.setState({ showModal: true });
+  }
+
+  handleClose() {
+    this.setState({ showModal: false });
+  }
+
   render() {
-    console.log(this.props.me.me);
+    console.log("===> HERE <===", this.props.me.me);
     return (
       <>
         <div id="profile-infos">
@@ -26,7 +44,9 @@ class Header extends Component {
                 </div>
               </div>
               <div id="edit-tools">
-                <div id="edit-profile">Edit profile</div>
+                <div id="edit-profile">
+                  <button onClick={this.handleShow}>Edit profile</button>
+                </div>
                 <AiOutlineSetting className="ml-3 settings-btn" />
               </div>
             </div>
@@ -35,20 +55,27 @@ class Header extends Component {
                 <strong>10</strong> posts
               </div>
               <div id="followers-center">
-                <strong>1000</strong> followers
+                <strong>{this.props.me.me.follows.length}</strong> followers
               </div>
               <div id="following-right">
-                <strong>978</strong> following
+                <strong>{this.props.me.myfollowedOnes.length}</strong> following
               </div>
             </div>
             <div id="profile-bottom">
-              <h6>Nickname</h6>
+              <h6>{this.props.me.me.userName}</h6>
               <p>Bio bla bla bla...</p>
             </div>
           </div>
         </div>
         <div id="stories">some stories here and shit....</div>
         <hr></hr>
+        {this.state.showModal ? (
+          <EditModal
+            fullName={this.props.me.me.fullName}
+            handleShow={this.handleShow}
+            handleClose={this.handleClose}
+          />
+        ) : null}
       </>
     );
   }

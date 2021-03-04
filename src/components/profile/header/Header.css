@@ -30,12 +30,11 @@
   flex: 1;
 }
 
-#edit-profile {
+#edit-profile button {
   width: 100px;
   border: 1px solid grey;
   padding: 0 0.5rem;
   border-radius: 5px;
-  cursor: pointer;
 }
 
 .settings-btn {
