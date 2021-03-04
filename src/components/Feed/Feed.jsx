@@ -226,51 +226,87 @@ class Feed extends Component {
             myfollowedOnes.map(
               (
                 post // console.log("one post from I follow",post)
-              ) => (
+              ) => 
                 <Row className="cols-12 post">
                                          
                   <Col>
                                                
                     <Card>
                                                      
-                      <Card.Header
-                        className="d-flex m-0"
-                        style={{ backgroundColor: "#FFFFFF" }}
-                      >
-                                                           
-                        <Image
-                          src={post.user.profilePicUrl}
-                          roundedCircle
-                          className="profilePic mr-3"
-                        />
-                                                           
-                        <p className="p-0 mt-2 general-font font-weight-bold">
-                                                                               
-                                                    {post.user.userName}       
-                                                     
-                        </p>
-                                                           
-                        <a className=" ml-auto a-tags ">
-                                                                               
-                                                    <BsThreeDots />             
-                                               
-                        </a>
+                    <Card.Header
+                  className="d-flex m-0"
+                  style={{ backgroundColor: "#FFFFFF" }}
+                >
+                  <Image
+                    src={post.user.profilePicUrl}
+                    roundedCircle
+                    className="profilePic mr-3"
+                  />
+                  <p className="p-0 mt-2 general-font font-weight-bold">
+                    {" "}
+                    {post.user.userName}
+                  </p>
+                  <a className=" ml-auto a-tags ">
+                    {" "}
+                    <BsThreeDots />
+                  </a>
+                </Card.Header>
+                <div className=" image">
+                  <Card.Img
+                    variant="top"
+                    src={post.imageUrl}
+                    className="img img-responsive full-width"
+                  />
+                </div>
 
+                <Card.Body>
+                  <div className="d-flex icons ">
+                    <FiHeart className="  mr-3" />
+                    <FaRegComment className=" mr-3" />
+                    <FiSend className=" mr-3" />
+                    <RiBookmarkLine className=" ml-auto" />
+                  </div>
+                  <Card.Title>
+                    <Image
+                      src="https://images.unsplash.com/photo-1554151228-14d9def656e4?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=666&q=80"
+                      roundedCircle
+                      className="profilePic-mini mr-1"
+                    />
+                    <p className="d-inline general-font">
+                      <span>
+                        <a className="a-tags font-weight-bold">somebody</a>
+                      </span>{" "}
+                      &{" "}
+                      <span>
+                        <a className="a-tags font-weight-bold">260 people</a>
+                      </span>{" "}
+                      liked this
+                    </p>
+                  </Card.Title>
+                  <Card.Text>
+                    <p className="p-0 m-0  mr-2 d-inline general-font font-weight-bold a-tags">
+                      {" "}
+                      {post.user.userName}
+                    </p>
+                    <p
+                      className={
+                        "m-0 p-0  " +
+                        (this.state.truncate === false ? "" : "text-truncate")
+                      }
+                    >
+                      {post.text}
+                    </p>
+                    {this.state.truncate === true && (
+                      <span>
+                        <a
+                          className="a-tags text-muted"
+                          onClick={() => this.setState({ truncate: false })}
+                        >
+                          see more
+                        </a>
                       </span>
                     )}
                     <br/>
-
-                    {post.comments.slice(0, 2).map((comment) => 
-                          <div>
-                            <p className="p-0 m-0  mr-2 d-inline general-font font-weight-bold">
-                              {" "}
-                              {comment.user}
-                            </p>
-                            <p className="m-0 p-0  ">
-                           {comment.text}
-                            </p>
-                          </div>
-                        )}
 
                     {post.comments && post.comments.length > 0 && (
                       <>
@@ -287,6 +323,19 @@ class Feed extends Component {
                         
                       </>
                     )}
+                    {post.comments.slice(0, 2).map((comment) => 
+                          <div>
+                            <p className="p-0 m-0  mr-2 d-inline general-font font-weight-bold">
+                              {" "}
+                              {comment.user}
+                            </p>
+                            <p className="m-0 p-0  ">
+                           {comment.text}
+                            </p>
+                          </div>
+                        )}
+
+                   
 
                     <p
                       className="text-muted mt-2 mb-0"
@@ -306,7 +355,7 @@ class Feed extends Component {
 
                   <Form className="cursor "  >
                   <Form.Row>
-                    <Col xs={1}><VscSmiley className="mr-3 icons mt-2" /></Col>
+                  <Col xs={1}><VscSmiley className="mr-3 icons mt-2" /></Col>
                   <Col xs={8}>
                     <Form.Control
                       id="text"
@@ -339,13 +388,13 @@ class Feed extends Component {
               </Card>
             </Col>
           </Row>
+            )}
         
       
     
   // 
 
-        )
-      } 
+       
 
      {this.state.showModal && (
         <div id="modal-background">
