@@ -14,7 +14,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 13rem;
+  padding: 1rem 10%;
   background-color: white;
   z-index: 999;
 }
@@ -66,4 +66,13 @@
 #profile-pic-nav {
   border-radius: 50%;
   width: 25px;
+}
+
+@media screen and (max-width: 700px) {
+  #compass-icon {
+    display: none;
+  }
+  #heart-icon {
+    display: none;
+  }
 }

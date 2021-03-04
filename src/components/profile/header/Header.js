@@ -7,7 +7,6 @@ const mapStateToProps = (state) => state;
 
 class Header extends Component {
   render() {
-    console.log("HEADER COMPONENT", this.state.me.me);
     return (
       <>
         <div id="profile-infos">

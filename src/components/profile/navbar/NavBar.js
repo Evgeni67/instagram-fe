@@ -21,8 +21,14 @@ const NavBar = () => {
           <div id="navbar-right">
             <IoHomeOutline style={{ width: "22px", height: "25px" }} />
             <FiSend style={{ width: "22px", height: "25px" }} />
-            <AiOutlineCompass style={{ width: "22px", height: "25px" }} />
-            <FiHeart style={{ width: "22px", height: "25px" }} />
+            <AiOutlineCompass
+              id="compass-icon"
+              style={{ width: "22px", height: "25px" }}
+            />
+            <FiHeart
+              id="heart-icon"
+              style={{ width: "22px", height: "25px" }}
+            />
             <Link to="/profile">
               <img
                 id="profile-pic-nav"
