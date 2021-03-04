@@ -56,7 +56,7 @@ class Register extends Component {
 
     
     let response= await fetch(url + "/users/register", requestOptions)
-    if (response.ok){window.location.replace("/login")}
+    if (response.ok){window.location.replace("/")}
     else{console.log(response)}}
     catch(e){console.log(e)}
   
