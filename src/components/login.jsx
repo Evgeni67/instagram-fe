@@ -22,6 +22,26 @@ class Login extends Component {
     token: "",
     refreshToken: "",
   };
+
+
+  componentDidMount = async () => {
+    const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+console.log(urlParams.get("accessToken"))
+     if(!urlParams.has("accessToken")){
+   
+      }else{
+
+        const token= urlParams.get("accessToken")
+        console.log(token)
+        localStorage.setItem("token", token)
+        window.location.replace("/feed")
+       
+      }
+    
+      
+  };
+
   changePassword = (e) => {
     this.setState({ password: e.target.value });
   };
@@ -50,11 +70,12 @@ class Login extends Component {
       },
     };
     const res = await axios(url + "/users/login", requestOptions)
-    localStorage.setItem("token", res.accessToken)
-    localStorage.setItem("refreshToken", res.refreshToken )
+ 
 
     if (res.status=== 200){
-    
+
+      localStorage.setItem("token", res.data.accessToken)
+      localStorage.setItem("refreshToken", res.data.refreshToken )
     window.location.replace("/feed")
     console.log("res",res)
     }
