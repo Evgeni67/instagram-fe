@@ -15,16 +15,16 @@
 import { initialState } from "../store";
 export default function (state = initialState, action) {
   switch (action.type) {
-    case "LIKE_POST":
-      return {
-        ...state,
-        likedPosts: state.liked.concat(action.payload),
-      };
-    case "REMOVE_LIKE_FROM_POST":
-      return {
-        ...state,
-        likedPosts: state.liked.filter((album) => album.id !== action.payload),
-      };
+    // case "LIKE_POST":
+    //   return {
+    //     ...state,
+    //     likedPosts: state.liked.concat(action.payload),
+    //   };
+    // case "REMOVE_LIKE_FROM_POST":
+    //   return {
+    //     ...state,
+    //     likedPosts: state.liked.filter((album) => album.id !== action.payload),
+    //   };
       case "LIKE_COMMENT":
         return {
           ...state,

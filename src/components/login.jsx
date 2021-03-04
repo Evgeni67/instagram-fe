@@ -133,7 +133,7 @@ console.log(urlParams.get("accessToken"))
                
               >
                 <GrFacebook   className="blue mr-2 mt-1" />{" "}
-               <a href = "http://localhost:9999/users/googleLogin" className="blue"> Log In</a>
+               <a href = {process.env.REACT_APP_URL +"/users/googleLogin"} className="blue"> Log In with Google</a>
               </Row>
               <Row className=" d-flex justify-content-center mb-3">
                 <p className="blue"> Forgotten password?</p>
