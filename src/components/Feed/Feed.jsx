@@ -13,7 +13,7 @@ import "./feed.css";
 const mapStateToProps = (state) => state;
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchMewithThunk: (id) =>
+  fetchMewithThunk: () =>
     dispatch(async (dispatch) => {
       const token =localStorage.getItem("token")
       const url = process.env.REACT_APP_URL;
@@ -38,7 +38,7 @@ const mapDispatchToProps = (dispatch) => ({
         });
       }
     }),
-  fetchMyFollowedOneswithThunk: (id) =>
+  fetchMyFollowedOneswithThunk: () =>
     dispatch(async (dispatch) => {
       const url = process.env.REACT_APP_URL;
       const token =localStorage.getItem("token")
@@ -64,7 +64,7 @@ const mapDispatchToProps = (dispatch) => ({
       }
     }),
 
-  fetchUserswithThunk: (id) =>
+  fetchUserswithThunk: () =>
     dispatch(async (dispatch) => {
       const url = process.env.REACT_APP_URL;
 
@@ -93,6 +93,36 @@ const mapDispatchToProps = (dispatch) => ({
         });
       }
     }),
+
+    fetchPostsNotFollowewithThunk: () =>
+    dispatch(async (dispatch) => {
+      const url = process.env.REACT_APP_URL;
+
+      const token =localStorage.getItem("token")
+      const response = await fetch(url + "/fromNotFollowed", {
+        headers: {
+          "Authorization":"Bearer " +
+          token
+
+        },
+      });
+
+      const posts= await response.json();
+      console.log("posts", posts);
+
+      if (response.ok) {
+        dispatch({
+          type: "SET_POSTS_NOT_FOLLOWED",
+          payload: posts,
+
+        });
+      } else {
+        dispatch({
+          type: "SET_ERROR",
+          payload: posts,
+        });
+      }
+    }),
 });
 
 class Feed extends Component {
@@ -100,6 +130,7 @@ class Feed extends Component {
     this.props.fetchMewithThunk();
     this.props.fetchUserswithThunk();
     this.props.fetchMyFollowedOneswithThunk();
+    this.props.fetchPostsNotFollowewithThunk();
   };
 
   state = {

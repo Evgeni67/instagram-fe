@@ -7,34 +7,46 @@ import PostModal from "../profile/posts/Modal";
 // styles
 import "../profile/posts/Posts.css";
 import { connect } from "react-redux";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 const mapStateToProps = (state) => state;
+
+
+
+
 
 const Discover = (props) => {
   
   const [showModal, setShowModal] = useState(false);
-  const { users} = props.users;
-  console.log("users from discover",users)
+  const { posts} = props;
+  console.log("posts from discover",posts)
   return (
     <>
     
 
    
+      
+     
       <div id="posts-section">
-    
       <div id="posts-grid" className="container">
             <div id="post-items" className="row no-gutters">
+            {posts && posts.length > 0 && posts.map((post)=> 
               <div className="col col-sm-12 col-md-6 col-lg-4 post">
                 <img
                   onClick={() => setShowModal(true)}
-                  src="https://via.placeholder.com/250"
+                  src=""
                   alt="post-img"
                 />
               </div>
+              )}
             </div>
+            
           </div>
-   
-      </div>
+          </div>
+  
+      
+       
       {showModal && (
         <div id="modal-background">
           <PostModal
