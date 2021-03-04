@@ -15,7 +15,7 @@ const mapStateToProps = (state) => state;
 const mapDispatchToProps = (dispatch) => ({
   fetchMewithThunk: () =>
     dispatch(async (dispatch) => {
-      const token =localStorage.getItem("token")
+      const token = localStorage.getItem("token");
       const url = process.env.REACT_APP_URL;
       const response = await fetch(url + "/users/me", {
         headers: {
@@ -30,7 +30,7 @@ const mapDispatchToProps = (dispatch) => ({
           type: "SET_ME",
           payload: me,
         });
-        console.log("me",me)
+        console.log("me", me);
       } else {
         dispatch({
           type: "SET_ERROR",
@@ -41,7 +41,7 @@ const mapDispatchToProps = (dispatch) => ({
   fetchMyFollowedOneswithThunk: () =>
     dispatch(async (dispatch) => {
       const url = process.env.REACT_APP_URL;
-      const token =localStorage.getItem("token")
+      const token = localStorage.getItem("token");
       const response = await fetch(url + "/posts/fromFollowed", {
         headers: {
           Authorization: "Bearer " + token,
@@ -49,7 +49,7 @@ const mapDispatchToProps = (dispatch) => ({
       });
 
       const myFollowedOnes = await response.json();
-      console.log("The posts from people who I follow ",myFollowedOnes)
+      console.log("The posts from people who I follow ", myFollowedOnes);
 
       if (response.ok) {
         dispatch({
@@ -68,23 +68,20 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(async (dispatch) => {
       const url = process.env.REACT_APP_URL;
 
-      const token =localStorage.getItem("token")
+      const token = localStorage.getItem("token");
       const response = await fetch(url + "/users", {
         headers: {
-          "Authorization":"Bearer " +
-          token
-
+          Authorization: "Bearer " + token,
         },
       });
 
-      const users= await response.json();
+      const users = await response.json();
       console.log("users", users);
 
       if (response.ok) {
         dispatch({
           type: "SET_USERS",
           payload: users,
-
         });
       } else {
         dispatch({
@@ -94,7 +91,8 @@ const mapDispatchToProps = (dispatch) => ({
       }
     }),
 
-    fetchPostsNotFollowewithThunk: () =>
+
+  fetchPostsNotFollowewithThunk: () =>
     dispatch(async (dispatch) => {
       const url = process.env.REACT_APP_URL;
 
@@ -110,6 +108,7 @@ const mapDispatchToProps = (dispatch) => ({
       const posts= await response.json();
       console.log("postswhonotfollowed", posts);
 
+
       if (response.ok) {
         dispatch({
           type: "SET_POSTS_NOT_FOLLOWED",
@@ -124,7 +123,6 @@ const mapDispatchToProps = (dispatch) => ({
       }
     }),
 
-   
 });
 
 class Feed extends Component {
@@ -139,6 +137,7 @@ class Feed extends Component {
   state = {
     truncate: true,
     showModal: false,
+
     comment:{
     text: ""
 
@@ -213,96 +212,50 @@ class Feed extends Component {
 	}
 
 
-  
   render() {
     const { posts, name, surname, userName, email, follows } = this.props.me.me;
-    const { myfollowedOnes} = this.props.me;
-    console.log("myfollowedOnes",myfollowedOnes)
-    
-
+    const { myfollowedOnes } = this.props.me;
+    console.log("myfollowedOnes", myfollowedOnes);
     return (
       <>
+                       
         <Container className="general-font">
-
-         
-          {myfollowedOnes && myfollowedOnes.length > 0 && myfollowedOnes.map((post)=> 
-            // console.log("one post from I follow",post)
-           
-          
-          <Row className="cols-12 post">
-            <Col>
-              <Card>
-                <Card.Header
-                  className="d-flex m-0"
-                  style={{ backgroundColor: "#FFFFFF" }}
-                >
-                  <Image
-                    src={post.user.profilePicUrl}
-                    roundedCircle
-                    className="profilePic mr-3"
-                  />
-                  <p className="p-0 mt-2 general-font font-weight-bold">
-                    {" "}
-                    {post.user.userName}
-                  </p>
-                  <a className=" ml-auto a-tags ">
-                    {" "}
-                    <BsThreeDots />
-                  </a>
-                </Card.Header>
-                <div className=" image">
-                  <Card.Img
-                    variant="top"
-                    src={post.imageUrl}
-                    className="img img-responsive full-width"
-                  />
-                </div>
-
-                <Card.Body>
-                  <div className="d-flex icons ">
-                    <FiHeart className="  mr-3" />
-                    <FaRegComment className=" mr-3" />
-                    <FiSend className=" mr-3" />
-                    <RiBookmarkLine className=" ml-auto" />
-                  </div>
-                  <Card.Title>
-                    <Image
-                      src="https://images.unsplash.com/photo-1554151228-14d9def656e4?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=666&q=80"
-                      roundedCircle
-                      className="profilePic-mini mr-1"
-                    />
-                    <p className="d-inline general-font">
-                      <span>
-                        <a className="a-tags font-weight-bold">somebody</a>
-                      </span>{" "}
-                      &{" "}
-                      <span>
-                        <a className="a-tags font-weight-bold">260 people</a>
-                      </span>{" "}
-                      liked this
-                    </p>
-                  </Card.Title>
-                  <Card.Text>
-                    <p className="p-0 m-0  mr-2 d-inline general-font font-weight-bold a-tags">
-                      {" "}
-                      {post.user.userName}
-                    </p>
-                    <p
-                      className={
-                        "m-0 p-0  " +
-                        (this.state.truncate === false ? "" : "text-truncate")
-                      }
-                    >
-                      {post.text}
-                    </p>
-                    {this.state.truncate === true && (
-                      <span>
-                        <a
-                          className="a-tags text-muted"
-                          onClick={() => this.setState({ truncate: false })}
-                        >
-                          see more
+                                               
+          {myfollowedOnes &&
+            myfollowedOnes.length > 0 &&
+            myfollowedOnes.map(
+              (
+                post // console.log("one post from I follow",post)
+              ) => (
+                <Row className="cols-12 post">
+                                         
+                  <Col>
+                                               
+                    <Card>
+                                                     
+                      <Card.Header
+                        className="d-flex m-0"
+                        style={{ backgroundColor: "#FFFFFF" }}
+                      >
+                                                           
+                        <Image
+                          src={post.user.profilePicUrl}
+                          roundedCircle
+                          className="profilePic mr-3"
+                        />
+                                                           
+                        <p className="p-0 mt-2 general-font font-weight-bold">
+                                                                               
+                                                    {post.user.userName}       
+                                                     
+                        </p>
+                                                           
+                        <a className=" ml-auto a-tags ">
+                                                                               
+                                                    <BsThreeDots />             
+                                               
                         </a>
+
                       </span>
                     )}
                     <br/>
@@ -402,7 +355,9 @@ class Feed extends Component {
           />
         </div>
       )}
+
         </Container>
+                   
       </>
     );
   }
