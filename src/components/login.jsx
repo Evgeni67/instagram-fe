@@ -1,19 +1,11 @@
 import React, { Component } from "react";
-import {
-  Row,
-  Col,
-  Container,
-  Navbar,
-  Nav,
-  Form,
-  FormControl,
-} from "react-bootstrap";
+import { Row, Col, Container } from "react-bootstrap";
 import downloadAppStore from "../assets/downloadAPPstore.png";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+// import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import logo from "./instagram.png";
 import { GrFacebook } from "react-icons/gr";
 import "./login.css";
-import axios from 'axios'
+import axios from "axios";
 
 class Login extends Component {
   state = {
@@ -23,33 +15,27 @@ class Login extends Component {
     refreshToken: "",
   };
 
-
   componentDidMount = async () => {
     const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-console.log(urlParams.get("accessToken"))
-     if(!urlParams.has("accessToken")){
-   
-      }else{
-
-        const token= urlParams.get("accessToken")
-        console.log(token)
-        localStorage.setItem("token", token)
-        window.location.replace("/feed")
-       
-      }
-    
-      
+    const urlParams = new URLSearchParams(queryString);
+    console.log(urlParams.get("accessToken"));
+    if (!urlParams.has("accessToken")) {
+    } else {
+      const token = urlParams.get("accessToken");
+      console.log(token);
+      localStorage.setItem("token", token);
+      window.location.replace("/feed");
+    }
   };
 
   changePassword = (e) => {
     this.setState({ password: e.target.value });
   };
   loginWithGoogle = async () => {
-    const url=process.env.REACT_APP_URL
+    const url = process.env.REACT_APP_URL;
     await fetch(url + "/users/googleLogin")
       .then((response) => response.json())
-      .then((data) => console.log("response of oauth",data));
+      .then((data) => console.log("response of oauth", data));
   };
   changeEmail = (e) => {
     this.setState({ email: e.target.value });
@@ -59,28 +45,25 @@ console.log(urlParams.get("accessToken"))
   //   this.setState({ refreshToken: data.refreshToken });
   // };
   login = async () => {
-    const url=process.env.REACT_APP_URL
+    const url = process.env.REACT_APP_URL;
     this.setState({ loading: true });
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      data:{
+      data: {
         password: this.state.password,
         email: this.state.email,
       },
     };
-    const res = await axios(url + "/users/login", requestOptions)
- 
+    const res = await axios(url + "/users/login", requestOptions);
 
-    if (res.status=== 200){
-
-      localStorage.setItem("token", res.data.accessToken)
-      localStorage.setItem("refreshToken", res.data.refreshToken )
-    window.location.replace("/feed")
-    console.log("res",res)
-    }
-    else {
-      console.log(res)
+    if (res.status === 200) {
+      localStorage.setItem("token", res.data.accessToken);
+      localStorage.setItem("refreshToken", res.data.refreshToken);
+      window.location.replace("/feed");
+      console.log("res", res);
+    } else {
+      console.log(res);
     }
   };
   render() {
@@ -89,7 +72,7 @@ console.log(urlParams.get("accessToken"))
         <Row className="d-flex justify-content-center mt-5">
           <Col sm={3} />
           <Col sm={3}>
-            <img src={logo} className="loginImage" />
+            <img src={logo} className="loginImage" alt="img" />
           </Col>
           <Col sm={3} className>
             <Container className="loginContainer">
@@ -97,6 +80,7 @@ console.log(urlParams.get("accessToken"))
                 <img
                   className="containerPhoto"
                   src="https://logos-world.net/wp-content/uploads/2020/04/Instagram-Logo.png"
+                  alt="img"
                 />
               </Row>
               <Row className=" d-flex justify-content-center mb-2">
@@ -128,12 +112,15 @@ console.log(urlParams.get("accessToken"))
                 </button>
               </Row>
               <hr />
-              <Row
-                className=" d-flex justify-content-center mt-2"
-               
-              >
-                <GrFacebook   className="blue mr-2 mt-1" />{" "}
-               <a href = {process.env.REACT_APP_URL +"/users/googleLogin"} className="blue"> Log In with Google</a>
+              <Row className=" d-flex justify-content-center mt-2">
+                <GrFacebook className="blue mr-2 mt-1" />{" "}
+                <a
+                  href={process.env.REACT_APP_URL + "/users/googleLogin"}
+                  className="blue"
+                >
+                  {" "}
+                  Log In with Google
+                </a>
               </Row>
               <Row className=" d-flex justify-content-center mb-3">
                 <p className="blue"> Forgotten password?</p>
@@ -141,7 +128,13 @@ console.log(urlParams.get("accessToken"))
             </Container>
             <Container className="registerContainer mt-3">
               <Row className=" d-flex justify-content-center mt-4">
-                <p className="registrationText"  onClick={() => (window.location = "/register")}> Do not have an account?</p>
+                <p
+                  className="registrationText"
+                  onClick={() => (window.location = "/register")}
+                >
+                  {" "}
+                  Do not have an account?
+                </p>
                 <a
                   className="blue ml-2"
                   onClick={() => (window.location = "/register")}
@@ -158,6 +151,7 @@ console.log(urlParams.get("accessToken"))
               <img
                 className="downloadBtn"
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/1200px-Google_Play_Store_badge_EN.svg.png"
+                alt="img"
               />
             </Row>
           </Col>

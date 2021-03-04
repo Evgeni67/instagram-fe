@@ -3,7 +3,7 @@
   width: 100%;
   margin-top: 6vh;
   display: flex;
-  padding: 0 10rem;
+  padding: 0 10%;
 }
 
 #profile-left {
@@ -29,7 +29,9 @@
 #username-wrapper {
   flex: 1;
 }
+
 #edit-profile {
+  width: 100px;
   border: 1px solid grey;
   padding: 0 0.5rem;
   border-radius: 5px;
