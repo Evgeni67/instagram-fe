@@ -116,7 +116,9 @@ class Feed extends Component {
     return (
       <>
         <Container className="general-font">
-          {myfollowedOnes && myfollowedOnes.length > 0 && myfollowedOnes.map((post)=> {
+
+         
+          {myfollowedOnes && myfollowedOnes.length > 0 && myfollowedOnes.map((post)=> 
             // console.log("one post from I follow",post)
            
           
@@ -262,7 +264,8 @@ class Feed extends Component {
         
       
     
-  }
+  // 
+
         )
       } 
 
