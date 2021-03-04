@@ -6,16 +6,18 @@ import PostModal from "../profile/posts/Modal";
 
 // styles
 import "../profile/posts/Posts.css";
+import { connect } from "react-redux";
 
-
-
+const mapStateToProps = (state) => state;
 
 const Discover = (props) => {
   
   const [showModal, setShowModal] = useState(false);
-
+  const { users} = props.users;
+  console.log("users from discover",users)
   return (
     <>
+    
 
    
       <div id="posts-section">
@@ -45,4 +47,4 @@ const Discover = (props) => {
   );
 };
 
-export default Discover;
+export default connect(mapStateToProps)(Discover);

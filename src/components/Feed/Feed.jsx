@@ -49,7 +49,7 @@ const mapDispatchToProps = (dispatch) => ({
       });
 
       const myFollowedOnes = await response.json();
-      console.log("I foloow:",myFollowedOnes)
+      console.log("The posts from people who I follow ",myFollowedOnes)
 
       if (response.ok) {
         dispatch({
@@ -109,15 +109,18 @@ class Feed extends Component {
   };
   render() {
     const { posts, name, surname, userName, email, follows } = this.props.me.me;
-    const { myFollowedOnes} = this.props.me;
-    console.log(this.props.me)
+    const { myfollowedOnes} = this.props.me;
+    console.log("myfollowedOnes",myfollowedOnes)
     
 
     return (
       <>
         <Container className="general-font">
-          {myFollowedOnes && myFollowedOnes.length > 0 && follows.map((post)=> {
-          <Row className="cols-12">
+          {myfollowedOnes && myfollowedOnes.length > 0 && myfollowedOnes.map((post)=> {
+            // console.log("one post from I follow",post)
+           
+          
+          <Row className="cols-12 post">
             <Col>
               <Card>
                 <Card.Header
@@ -193,7 +196,7 @@ class Feed extends Component {
                         </a>
                       </span>
                     )}
-                    {this.state.comments.length > 0 && (
+                    {post.comments&& post.comments.length > 0 && (
                       <>
                         <span>
                           <a
@@ -256,7 +259,12 @@ class Feed extends Component {
               </Card>
             </Col>
           </Row>
-        })} 
+        
+      
+    
+  }
+        )
+      } 
 
      {this.state.showModal && (
         <div id="modal-background">
