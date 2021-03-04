@@ -8,6 +8,7 @@ const mapStateToProps = (state) => state;
 class SideBar extends Component {
   render() {
      const {  users} = this.props;
+     const {  fullName,userName} = this.props.me.me;
    
     return (
 
@@ -22,9 +23,9 @@ class SideBar extends Component {
           <div>
             <p className="p-0  general-font font-weight-bold d-inline">
               {" "}
-              username
+              {userName}
             </p>
-            <p className="p-0  general-font  text-muted "> Name & Surname</p>
+            <p className="p-0  general-font  text-muted "> {fullName} </p>
           </div>
           <p className="mb-1 mt-2 ml-auto d-inline ">
             <span>
