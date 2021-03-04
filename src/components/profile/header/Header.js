@@ -7,6 +7,7 @@ const mapStateToProps = (state) => state;
 
 class Header extends Component {
   render() {
+    console.log(this.props.me.me);
     return (
       <>
         <div id="profile-infos">
@@ -20,7 +21,9 @@ class Header extends Component {
           <div id="profile-right">
             <div id="profile-top">
               <div id="username-wrapper">
-                <div id="user-name">Username</div>
+                <div id="user-name">
+                  <h6>{this.props.me.me.fullName}</h6>
+                </div>
               </div>
               <div id="edit-tools">
                 <div id="edit-profile">Edit profile</div>
