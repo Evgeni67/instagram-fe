@@ -6,7 +6,7 @@ import { FiSend, FiHeart } from "react-icons/fi";
 import { AiOutlineCompass } from "react-icons/ai";
 import {Link} from "react-router-dom"
 import "./NavBar.css";
-import { Link } from "react-router-dom";
+
 
 const NavBar = () => {
   return (
@@ -25,22 +25,6 @@ const NavBar = () => {
             <FiSend style={{ width: "22px", height: "25px" ,color:"black"}} />
             <Link to="/discover"><AiOutlineCompass style={{ width: "22px", height: "25px" ,color:"black"}} /></Link>
             <FiHeart style={{ width: "22px", height: "25px" }} />
-            <img
-              id="profile-pic-nav"
-              src="https://via.placeholder.com/150"
-              alt="profile-pic"
-
-            <IoHomeOutline style={{ width: "22px", height: "25px" }} />
-            <FiSend style={{ width: "22px", height: "25px" }} />
-            <AiOutlineCompass
-              id="compass-icon"
-              style={{ width: "22px", height: "25px" }}
-            />
-            <FiHeart
-              id="heart-icon"
-              style={{ width: "22px", height: "25px" }}
-
-            />
             <Link to="/profile">
               <img
                 id="profile-pic-nav"
