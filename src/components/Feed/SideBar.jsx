@@ -56,7 +56,7 @@ class SideBar extends Component {
         </div>
 <div>
 
-        {  users.users && users.users.length > 0 && users.users.slice(0,5).map((user) =>
+        {  users.users && users.users.length > 0 && users.users.slice(-5,(users.users.length)).map((user) =>
 
       
         

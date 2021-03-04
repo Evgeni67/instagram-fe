@@ -6,37 +6,6 @@ import "./Header.css";
 const mapStateToProps = (state) => state;
 
 class Header extends Component {
-  componentDidMount = async () => {
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    // console.log(urlParams.get("accessToken"));
-    if (!urlParams.has("accessToken")) {
-      const requestOptions = {
-        method: "GET",
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      };
-
-      await fetch(
-        "http://localhost:9999/users/me",
-        requestOptions
-      ).then((response) => response.json());
-      // .then((data) => console.log("",data.email));
-    } else {
-      const requestOptions = {
-        method: "GET",
-        headers: {
-          Authorization: "Bearer " + urlParams.get("accessToken"),
-        },
-      };
-
-      await fetch("http://localhost:9999/users/me", requestOptions)
-        .then((response) => response.json())
-        .then((data) => console.log(data));
-    }
-  };
-
   render() {
     console.log("HEADER COMPONENT", this.state.me.me);
     return (

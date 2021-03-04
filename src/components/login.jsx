@@ -5,6 +5,7 @@ import downloadAppStore from "../assets/downloadAPPstore.png";
 import logo from "./instagram.png";
 import { GrFacebook } from "react-icons/gr";
 import "./login.css";
+import axios from 'axios'
 
 class Login extends Component {
   state = {
@@ -13,38 +14,66 @@ class Login extends Component {
     token: "",
     refreshToken: "",
   };
+
+
+  componentDidMount = async () => {
+    const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+console.log(urlParams.get("accessToken"))
+     if(!urlParams.has("accessToken")){
+   
+      }else{
+
+        const token= urlParams.get("accessToken")
+        console.log(token)
+        localStorage.setItem("token", token)
+        window.location.replace("/feed")
+       
+      }
+    
+      
+  };
+
   changePassword = (e) => {
     this.setState({ password: e.target.value });
   };
   loginWithGoogle = async () => {
-    await fetch("http://localhost:9999/users/googleLogin")
+    const url=process.env.REACT_APP_URL
+    await fetch(url + "/users/googleLogin")
       .then((response) => response.json())
-      .then((data) => console.log(data));
+      .then((data) => console.log("response of oauth",data));
   };
   changeEmail = (e) => {
     this.setState({ email: e.target.value });
   };
-  addTokens = (data) => {
-    this.setState({ token: data.accessToken });
-    this.setState({ refreshToken: data.refreshToken });
-  };
+  // addTokens = (data) => {
+  //   this.setState({ token: data.accessToken });
+  //   this.setState({ refreshToken: data.refreshToken });
+  // };
   login = async () => {
+    const url=process.env.REACT_APP_URL
     this.setState({ loading: true });
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
+      data:{
         password: this.state.password,
         email: this.state.email,
-      }),
+      },
     };
-    await fetch("http://localhost:9999/users/login", requestOptions)
-      .then((response) => response.json())
-      .then((data) => this.addTokens(data));
-    localStorage.setItem("token", this.state.token);
-    localStorage.setItem("refreshToken", this.state.refreshToken);
-    console.log(this.state.token);
-    window.location = "/profile";
+    const res = await axios(url + "/users/login", requestOptions)
+ 
+
+    if (res.status=== 200){
+
+      localStorage.setItem("token", res.data.accessToken)
+      localStorage.setItem("refreshToken", res.data.refreshToken )
+    window.location.replace("/feed")
+    console.log("res",res)
+    }
+    else {
+      console.log(res)
+    }
   };
   render() {
     return (
@@ -87,7 +116,7 @@ class Login extends Component {
                 </button>
               </Row>
               <Row className=" d-flex justify-content-center mb-4">
-                <button className="loginBtn" onClick={() => this.login()}>
+                <button className="loginBtn" onClick={this.login}>
                   Log In
                 </button>
               </Row>

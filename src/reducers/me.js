@@ -34,6 +34,7 @@ export default function (state = initialState, action) {
         ...state,
         follows: state.liked.filter((album) => album.id !== action.payload),
       };
+
     case "SET_ME":
       return {
         ...state,
@@ -44,6 +45,10 @@ export default function (state = initialState, action) {
         ...state,
         myfollowedOnes: action.payload,
       };
+    //this action is actually for setting users who I follow and who have posts
+
+    default:
+      return state;
 
     default:
       return state;
