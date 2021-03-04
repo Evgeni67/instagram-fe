@@ -14,7 +14,8 @@ const mapStateToProps = (state) => state;
 const Posts = (props) => {
   const [isPost, setIsPost] = useState(true);
   const [showModal, setShowModal] = useState(false);
-
+console.log("inside of the posts",props.me)
+const {posts}=props.me.me
   return (
     <>
       <div id="posts-section">
@@ -35,15 +36,18 @@ const Posts = (props) => {
           </button>
         </div>
         {isPost ? (
+
           <div id="posts-grid" className="container">
             <div id="post-items" className="row no-gutters">
+              {posts && posts.length>0  && posts.map((post)=>
               <div className="col col-sm-12 col-md-6 col-lg-4 post">
                 <img
                   onClick={() => setShowModal(true)}
-                  src="https://via.placeholder.com/250"
+                  src={post.imageUrl}
                   alt="post-img"
                 />
               </div>
+              )}
             </div>
           </div>
         ) : (
