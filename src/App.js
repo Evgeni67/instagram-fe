@@ -8,6 +8,7 @@ import Posts from "./components/profile/posts/Posts";
 import SideBar from "./components/Feed/SideBar";
 import Stories from "./components/Feed/Stories";
 import Feed from "./components/Feed/Feed";
+import Discover from "./components/Discover/Discover";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Row, Col } from "react-bootstrap";
 class App extends Component {
@@ -17,6 +18,9 @@ class App extends Component {
         <Router>
           <Route exact path="/">
             <Login />
+          </Route>
+          <Route exact path="/discover">
+            <Discover/>
           </Route>
           <Route exact path="/register">
             <Register />
