@@ -19,7 +19,7 @@ const mapStateToProps = (state) => state;
 const Discover = (props) => {
   
   const [showModal, setShowModal] = useState(false);
-  const { posts} = props;
+  const { posts} = props.posts;
   console.log("posts from discover",posts)
   return (
     <>
@@ -28,14 +28,15 @@ const Discover = (props) => {
    
       
      
-      <div id="posts-section">
+      <div id="posts-section ">
       <div id="posts-grid" className="container">
             <div id="post-items" className="row no-gutters">
             {posts && posts.length > 0 && posts.map((post)=> 
+            post.imageUrl && 
               <div className="col col-sm-12 col-md-6 col-lg-4 post">
                 <img
                   onClick={() => setShowModal(true)}
-                  src=""
+                  src={post.imageUrl}
                   alt="post-img"
                 />
               </div>

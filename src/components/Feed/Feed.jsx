@@ -99,7 +99,7 @@ const mapDispatchToProps = (dispatch) => ({
       const url = process.env.REACT_APP_URL;
 
       const token =localStorage.getItem("token")
-      const response = await fetch(url + "/fromNotFollowed", {
+      const response = await fetch(url + "/posts/fromNotFollowed", {
         headers: {
           "Authorization":"Bearer " +
           token
@@ -108,7 +108,7 @@ const mapDispatchToProps = (dispatch) => ({
       });
 
       const posts= await response.json();
-      console.log("posts", posts);
+      console.log("postswhonotfollowed", posts);
 
       if (response.ok) {
         dispatch({
@@ -123,6 +123,8 @@ const mapDispatchToProps = (dispatch) => ({
         });
       }
     }),
+
+   
 });
 
 class Feed extends Component {
@@ -133,11 +135,85 @@ class Feed extends Component {
     this.props.fetchPostsNotFollowewithThunk();
   };
 
+
   state = {
     truncate: true,
-    comments: [],
     showModal: false,
+    comment:{
+    text: ""
+
+
+    }
+
   };
+  fetchComments= async (id) => {
+    const token =localStorage.getItem("token")
+	
+
+		try {
+	
+				let response = await fetch(
+					`${process.env.REACT_APP_URL}/comments/${id}`,
+					{
+						method: "POST",
+						body: JSON.stringify(this.state.comment),
+						headers: new Headers({
+							"Content-Type": "application/json",
+
+							Authorization: `Bearer ${token}`,
+						}),
+					}
+				)
+		
+
+			if (response.ok) {
+				
+				console.log("res of post", response)
+
+				this.setState({
+				comment: {
+						text:"",
+					},
+					errMessage: "",
+				})
+			
+		
+			} else {
+				console.log("an error occurred")
+				let error = await response.json()
+        console.log(error)
+				this.setState({
+					errMessage: error.message,
+					loading: false,
+				})
+			}
+		} catch (e) {
+			console.log(e) // Error
+			this.setState({
+				errMessage: e.message,
+				loading: false,
+			})
+		}
+	}
+
+  updateField = (e) => {
+		let comment = { ...this.state.comment }
+		let currentid = e.currentTarget.id
+
+		
+			comment[currentid] = e.currentTarget.value // e.currentTarget.value is the keystroke
+	
+
+		this.setState({ comment: comment })
+	}
+  submitForm = (id) => {
+	
+		this.setState({ loading: true })
+    this.fetchComments(id)
+	}
+
+
+  
   render() {
     const { posts, name, surname, userName, email, follows } = this.props.me.me;
     const { myfollowedOnes} = this.props.me;
@@ -229,6 +305,20 @@ class Feed extends Component {
                         </a>
                       </span>
                     )}
+                    <br/>
+
+                    {post.comments.slice(0, 2).map((comment) => 
+                          <div>
+                            <p className="p-0 m-0  mr-2 d-inline general-font font-weight-bold">
+                              {" "}
+                              {comment.user}
+                            </p>
+                            <p className="m-0 p-0  ">
+                           {comment.text}
+                            </p>
+                          </div>
+                        )}
+
                     {post.comments && post.comments.length > 0 && (
                       <>
                         <span>
@@ -241,17 +331,7 @@ class Feed extends Component {
                             see all the {post.comments.length} comments .
                           </a>
                         </span>
-                        {post.comments.slice(0, 2).map((comment) => (
-                          <div>
-                            <p className="p-0 m-0  mr-2 d-inline general-font font-weight-bold">
-                              {" "}
-                              {comment.user}
-                            </p>
-                            <p className="m-0 p-0  ">
-                            {comment.text}
-                            </p>
-                          </div>
-                        ))}
+                        
                       </>
                     )}
 
@@ -269,25 +349,39 @@ class Feed extends Component {
                   className="d-flex m-0"
                   style={{ backgroundColor: "#FFFFFF" }}
                 >
-                  <VscSmiley className="mr-3 icons mt-2" />
+                  
 
-                  <Form className="cursor ">
+                  <Form className="cursor "  >
+                  <Form.Row>
+                    <Col xs={1}><VscSmiley className="mr-3 icons mt-2" /></Col>
+                  <Col xs={8}>
                     <Form.Control
+                      id="text"
                       type="text"
                       placeholder="Add comment..."
                       className="rq-form-element  "
+                      value={this.state.comment.text}
+									    onChange={this.updateField}
+
                     />
-                  </Form>
-                  <p className="mb-1 mt-2 ml-auto">
+                  </Col>
+                  <Col xs={3}>
+                
+                  <p onClick={()=> this.submitForm(post._id)} className="mb-1 mt-2 ml-auto d-inline"  >
                     <span>
                       <a
-                        className="a-tags font-weight-bold "
+                        className="a-tags font-weight-bold  "
                         style={{ color: "#0095F6" }}
+                        
                       >
                         Share{" "}
                       </a>
                     </span>{" "}
                   </p>
+                  
+                  </Col>
+                  </Form.Row>
+                  </Form>
                 </Card.Footer>
               </Card>
             </Col>

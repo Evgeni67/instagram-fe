@@ -21,7 +21,13 @@ class App extends Component {
           </Route>
           <Route exact path="/discover">
           <NavBar />
+          <div style={{
+                  marginLeft: "70px",
+                  marginRight: "70px",
+                  marginTop: "100px",
+                }}>
             <Discover/>
+            </div>
           </Route>
           <Route exact path="/register">
             <Register />

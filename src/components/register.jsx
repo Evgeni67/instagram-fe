@@ -23,6 +23,8 @@ class Register extends Component {
     fullname:"",
     username:""
   };
+
+  
   changePassword = (e) => {
     this.setState({ password: e.target.value });
   };
