@@ -12,6 +12,7 @@ const Posts = () => {
   const [showModal, setShowModal] = useState(false);
 
   return (
+  
     <>
       <div id="posts-section">
         <div id="posts-navigation">

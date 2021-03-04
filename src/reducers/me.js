@@ -45,46 +45,7 @@ export default function (state = initialState, action) {
           ...state,
           follows: state.liked.filter((album) => album.id !== action.payload),
         };
-        // case "SET_E_MAIL":
-        //   return {
-        //     ...state,
-        //    email: action.payload,
-        //   };
-        //   case "SET_USERNAME":
-        //   return {
-        //     ...state,
-        //    userName: action.payload,
-        //   };
-        //   case "SET_NAME":
-        //   return {
-        //     ...state,
-        //    name: action.payload,
-        //   };
-        //   case "SET_SURNAME":
-        //     return {
-        //       ...state,
-        //      surname: action.payload,
-        //     };
-        //   case "SET_profilePicUrl":
-        //       return {
-        //         ...state,
-        //         profilePicUrl: action.payload,
-        //       };
-        //       case "SET_FOLLOWS":
-        //       return {
-        //         ...state,
-        //       follows: action.payload,
-        //       };
-        //       case "SET_FOLLOWERS":
-        //       return {
-        //         ...state,
-        //        followers: action.payload,
-        //       };
-        //       case "SET_MY_POSTS":
-        //       return {
-        //         ...state,
-        //        myposts: action.payload,
-        //       };
+        
               case "SET_ME":
                 return {
                   ...state,
@@ -95,6 +56,7 @@ export default function (state = initialState, action) {
                     ...state,
                    myfollowedOnes: action.payload,
                   };
+                  //this action is actually for setting users who I follow and who have posts
                 
 
               default:
