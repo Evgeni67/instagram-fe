@@ -1,5 +1,4 @@
 import React, { Component } from "react"
-import { BsBookmark, BsBookmarkFill } from "react-icons/bs"
 import { connect } from "react-redux"
 
 const mapStateToProps = (state) => state
