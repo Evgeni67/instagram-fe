@@ -120,7 +120,12 @@ const mapDispatchToProps = (dispatch) => ({
 		}),
 })
 
+
+
 class Feed extends Component {
+	
+
+
 	componentDidMount = () => {
 		this.props.fetchMewithThunk()
 		this.props.fetchUserswithThunk()
