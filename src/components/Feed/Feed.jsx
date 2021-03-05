@@ -1,18 +1,19 @@
-import React, { Component } from "react";
-import { BsThreeDots } from "react-icons/bs";
-import { FiSend, FiHeart } from "react-icons/fi";
-import { RiBookmarkLine } from "react-icons/ri";
-import { FaRegComment } from "react-icons/fa";
-import { VscSmiley } from "react-icons/vsc";
-import { connect } from "react-redux";
-import PostModal from "../profile/posts/Modal";
+import React, { Component } from "react"
+import { BsThreeDots } from "react-icons/bs"
+import { FiSend, FiHeart } from "react-icons/fi"
+import { RiBookmarkLine } from "react-icons/ri"
+import { FaRegComment } from "react-icons/fa"
+import { VscSmiley } from "react-icons/vsc"
+import { connect } from "react-redux"
+import PostModal from "../profile/posts/Modal"
 
-import { Row, Col, Container, Card, Image, Form } from "react-bootstrap";
-import "./feed.css";
+import { Row, Col, Container, Card, Image, Form } from "react-bootstrap"
+import "./feed.css"
 
-const mapStateToProps = (state) => state;
+const mapStateToProps = (state) => state
 
 const mapDispatchToProps = (dispatch) => ({
+
   fetchMewithThunk: () =>
     dispatch(async (dispatch) => {
       const token = localStorage.getItem("token");
@@ -23,7 +24,7 @@ const mapDispatchToProps = (dispatch) => ({
         },
       });
 
-      const me = await response.json();
+			const me = await response.json()
 
       if (response.ok) {
         dispatch({
@@ -51,18 +52,19 @@ const mapDispatchToProps = (dispatch) => ({
       const myFollowedOnes = await response.json();
       console.log("The posts from people who I follow ", myFollowedOnes);
 
-      if (response.ok) {
-        dispatch({
-          type: "SET_USERS_I_FOLLOWED",
-          payload: myFollowedOnes,
-        });
-      } else {
-        dispatch({
-          type: "SET_ERROR",
-          payload: myFollowedOnes,
-        });
-      }
-    }),
+
+			if (response.ok) {
+				dispatch({
+					type: "SET_USERS_I_FOLLOWED",
+					payload: myFollowedOnes,
+				})
+			} else {
+				dispatch({
+					type: "SET_ERROR",
+					payload: myFollowedOnes,
+				})
+			}
+		}),
 
   fetchUserswithThunk: () =>
     dispatch(async (dispatch) => {
@@ -335,17 +337,7 @@ class Feed extends Component {
                           </div>
                         )}
 
-                   
-
-                    <p
-                      className="text-muted mt-2 mb-0"
-                      style={{ fontSize: "10px" }}
-                    >
-                      {" "}
-                      22 MINS AGO
-                    </p>
-                  </Card.Text>
-                </Card.Body>
+		comment[currentid] = e.currentTarget.value // e.currentTarget.value is the keystroke
 
                 <Card.Footer
                   className="d-flex m-0"
@@ -410,6 +402,7 @@ class Feed extends Component {
       </>
     );
   }
+
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Feed);
+export default connect(mapStateToProps, mapDispatchToProps)(Feed)
