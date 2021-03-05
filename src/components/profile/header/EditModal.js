@@ -19,7 +19,9 @@ const mapDispatchToProps = (dispatch) => ({
 
         body: JSON.stringify(values),
       });
+
       let me = await response.json();
+
       if (response.ok) {
         dispatch({
           type: "SET_ME",

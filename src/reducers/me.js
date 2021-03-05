@@ -14,10 +14,20 @@ export default function (state = initialState, action) {
           (album) => album.id !== action.payload
         ),
       };
+    case "ADD_TO_SAVED":
+      return {
+        ...state,
+        savedPosts: state.savedPosts.concat(action.payload),
+      };
+    case "REMOVE_FROM_SAVED":
+      return {
+        ...state,
+        savedPosts: state.savedPosts.concat(action.payload),
+      };
     case "FOLLOW_THE_USER":
       return {
         ...state,
-        follows: state.liked.concat(action.payload),
+        follows: state.liked.filter((post) => post._id !== action.payload),
       };
     case "UNFOLLOW_THE_USER":
       return {

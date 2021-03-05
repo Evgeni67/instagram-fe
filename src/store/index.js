@@ -9,30 +9,24 @@ const composedEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export const initialState = {
   me: {
-    me:{},
-    myfollowedOnes:[]
-
+    me: {},
+    myfollowedOnes: [],
+    savedPosts: [],
   },
 
-  users:{
-    users:[],
-    single_user:{},
-    single_user_id:""
+  users: {
+    users: [],
+    single_user: {},
+    single_user_id: "",
   },
-  
-   
 
-  posts:[]
-
-  
-  
+  posts: [],
 };
 
 const combinedReducer = combineReducers({
   users: usersReducers,
   me: meReducers,
   posts: postsReducers,
-
 });
 
 export default function configureStore() {
