@@ -5,6 +5,7 @@ import Footer from "./Footer"
 import "./feed.css"
 import Follow from "../follow"
 import { connect } from "react-redux"
+import { Link } from "react-router-dom"
 const mapStateToProps = (state) => state
 class SideBar extends Component {
 	render() {
@@ -66,10 +67,12 @@ class SideBar extends Component {
 									className="profilePic mr-2"
 								/>
 								<div>
-									<p className="p-0  general-font font-weight-bold d-inline">
+								<Link to={`/profile/${user._id}`} >
+									<p className="p-0  general-font font-weight-bold d-inline a-tags">
 										{" "}
 										{user.userName}
 									</p>
+									</Link>
 									<p
 										className="p-0    text-muted "
 										style={{ fontSize: "12px" }}

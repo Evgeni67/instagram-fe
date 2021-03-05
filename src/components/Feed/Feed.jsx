@@ -232,7 +232,7 @@ class Feed extends Component {
 												className="profilePic mr-3"
 											/>
                       	<Link to={`/profile/${post.user._id}`}>
-											<p className="p-0 mt-2 general-font font-weight-bold">
+											<p className="p-0 mt-2 general-font font-weight-bold a-tags">
 												{" "}
 												{post.user.userName}
 											</p>
