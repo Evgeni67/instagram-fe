@@ -224,10 +224,12 @@ class Feed extends Component {
                     roundedCircle
                     className="profilePic mr-3"
                   />
+                  <Link to={`/profile/${post.user._id}`}>
                   <p className="p-0 mt-2 general-font font-weight-bold">
                     {" "}
                     {post.user.userName}
                   </p>
+                  </Link>
                   <a className=" ml-auto a-tags ">
                     {" "}
                     <BsThreeDots />
@@ -351,12 +353,12 @@ class Feed extends Component {
 
                     />
                   </Col>
-                  <Col xs={3}>
+                  <Col xs={3} className="text-center">
                 
-                  <p onClick={()=> this.submitForm(post._id)} className="mb-1 mt-2 ml-auto d-inline"  >
+                  <p onClick={()=> this.submitForm(post._id)} className="mb-1 mt-2 ml-auto d-inline mt-2  "  >
                     <span>
                       <a
-                        className="a-tags font-weight-bold  "
+                        className="a-tags font-weight-bold mt-2  "
                         style={{ color: "#0095F6" }}
                         
                       >

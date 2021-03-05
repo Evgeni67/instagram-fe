@@ -41,10 +41,13 @@ console.log(props.me)
               style={{ width: "22px", height: "25px" }}
             />
 
-            <Link to={`/profile/${props.me.me._id}`}>
+            <Link to={`/profile/${props.me.me._id}`}
+             >
               <img
+             
+              
                 id="profile-pic-nav"
-                src="https://via.placeholder.com/150"
+                src={ !props.me.me.profilePicUrl ? "https://via.placeholder.com/150": props.me.me.profilePicUrl}
                 alt="profile-pic"
               />
             </Link>
