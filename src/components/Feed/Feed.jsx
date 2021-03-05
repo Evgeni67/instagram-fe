@@ -266,7 +266,7 @@ class Feed extends Component {
                     </p>
                   </Card.Title>
                   <Card.Text>
-                  <Link path={`/Profile/${post.user._id}`}>
+                  <Link to={`/profile/${post.user._id}`}>
                     <p className="p-0 m-0  mr-2 d-inline general-font font-weight-bold a-tags">
                       {" "}
                       {post.user.userName}
