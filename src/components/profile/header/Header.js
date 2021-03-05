@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import { AiOutlineSetting } from "react-icons/ai";
 import EditModal from "./EditModal";
 import "./Header.css";
-
+import { Row, Col, Form, Button } from "react-bootstrap";
+import {GrAttachment} from "react-icons/gr";
 const mapStateToProps = (state) => state;
 const mapDispatchToProps = (dispatch) => ({
   fetchMewithThunk: () =>
@@ -31,11 +32,11 @@ const mapDispatchToProps = (dispatch) => ({
         });
       }
     }),
-    fetchSingleUserwithThunk: (id) =>
+  fetchSingleUserwithThunk: (id) =>
     dispatch(async (dispatch) => {
       const token = localStorage.getItem("token");
       const url = process.env.REACT_APP_URL;
-      const response = await fetch(url + "/users/"+ id, {
+      const response = await fetch(url + "/users/" + id, {
         headers: {
           Authorization: "Bearer " + token,
         },
@@ -56,46 +57,94 @@ const mapDispatchToProps = (dispatch) => ({
         });
       }
     }),
- 
-
 });
 
-
 class Header extends Component {
- 
+  state = {
+    showModal: false,
+    changeImage: false,
+    image:"",
+  };
 
-    
-    state = {
-      showModal: false,
-    };
-  
- 
-  handleShow=()=> {
+  handleShow = () => {
     this.setState({ showModal: true });
-  }
+  };
+  postProfileImage = async (postId) => {
+    try {
+      let post = new FormData();
+      await post.append("image", this.state.image);
+      if (post) {
+        let response = await fetch(
+          process.env.REACT_APP_URL + "/users/imageUpload/" + this.props.me.me._id,
+          {
+            method: "POST",
+            body: post,
+            headers: new Headers({
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+              Accept: "application/json",
+            }),
+          }
+        );
+        if (response.ok) {
+          this.props.fetchMewithThunk();
+          this.props.fetchSingleUserwithThunk(this.props.id);
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  handleClose=(showMode)=> {
-    this.setState({ showModal: showMode});
+  handleClose = (showMode) => {
+    this.setState({ showModal: showMode });
+  };
+  componentDidMount = () => {
+    this.props.fetchMewithThunk();
+    this.props.fetchSingleUserwithThunk(this.props.id);
+  };
+  openChangeImage = () => {
+    if(this.state.changeImage === true){
+      this.setState({changeImage:false})
+      console.log(this.props.me.me._id)
+      this.postProfileImage()
+    }else{
+      this.setState({changeImage:true})
+      
+    }
   }
-  componentDidMount=()=>{
-    this.props.fetchMewithThunk()
-    this.props.fetchSingleUserwithThunk( this.props.id)
-   
-  }
-
   render() {
-    console.log("inside of heade",this.props.me)
- 
+    console.log("inside of heade", this.props.me);
+
     return (
       <>
         <div id="profile-infos">
           <div id="profile-left">
             <img
               id="profilePicHead"
-              src={this.props.me.me.profilePicUrl ? this.props.me.me.profilePicUrl:"https://via.placeholder.com/150" }
+              src={
+                this.props.me.me.profilePicUrl
+                  ? this.props.me.me.profilePicUrl
+                  : "https://via.placeholder.com/150"
+              }
               alt="profile-pic"
+              onClick={() => this.openChangeImage()}
             />
+  <div className={this.state.changeImage ? "feed-btn-wrapper" : "d-none"}>
+                <Form.Label htmlFor="postImage">
+                  <GrAttachment className ="mt-5 "/>
+                </Form.Label>
+                <Form.Control
+                  type="file"
+                  className="visually-hidden"
+                  id="postImage"
+                  accept="image/*"
+                  onChange={(e) => this.setState({ image: e.target.files[0] })}
+                />
+             
+              </div>
+          
           </div>
+
           <div id="profile-right">
             <div id="profile-top">
               <div id="username-wrapper">
@@ -112,13 +161,23 @@ class Header extends Component {
             </div>
             <div id="profile-center" className="my-4">
               <div id="posts-left">
-                <strong>{this.props.me.me.posts && this.props.me.me.posts.length}</strong> posts
+                <strong>
+                  {this.props.me.me.posts && this.props.me.me.posts.length}
+                </strong>{" "}
+                posts
               </div>
               <div id="followers-center">
-                <strong>{this.props.me.me.follows && this.props.me.me.follows.length}</strong> followers
+                <strong>
+                  {this.props.me.me.follows && this.props.me.me.follows.length}
+                </strong>{" "}
+                followers
               </div>
               <div id="following-right">
-                <strong>{this.props.me.myfollowedOnes&& this.props.me.myfollowedOnes.length}</strong> following
+                <strong>
+                  {this.props.me.myfollowedOnes &&
+                    this.props.me.myfollowedOnes.length}
+                </strong>{" "}
+                following
               </div>
             </div>
             <div id="profile-bottom">
@@ -141,4 +200,4 @@ class Header extends Component {
   }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

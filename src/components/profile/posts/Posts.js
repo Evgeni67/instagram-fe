@@ -49,6 +49,7 @@ const Posts = (props) => {
 													onClick={() => setShowModal(post._id)}
 													src={post.imageUrl}
 													alt="post-img"
+                          className = "profilePostImage"
 												/>
 											</div>
 										)

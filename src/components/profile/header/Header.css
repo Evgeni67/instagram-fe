@@ -13,6 +13,14 @@
   align-items: start;
 }
 
+.feed-btn-wrapper .visually-hidden {
+  position: absolute;
+  left: 50%;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+}
 #profile-right {
   height: 15%;
   padding: 1rem 2rem;
@@ -50,6 +58,7 @@
 #profilePicHead {
   border-radius: 50%;
   width: 150px;
+  height:150px;
   margin-top: 3rem;
 }
 
