@@ -43,11 +43,13 @@
 #close-btn {
   background: rgb(185, 10, 10);
   color: #fff;
+  z-index:9999;
 }
 
 #save-btn {
   background: rgb(10, 185, 10);
   color: #fff;
+  z-index:9999;
 }
 
 .editModal-inputs {
