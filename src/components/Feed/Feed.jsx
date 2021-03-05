@@ -160,6 +160,7 @@ class Feed extends Component {
 
 			if (response.ok) {
 				console.log("res of post", response)
+        this.props.fetchMyFollowedOneswithThunk() 
 
 				this.setState({
 					comment: {
@@ -230,10 +231,12 @@ class Feed extends Component {
 												roundedCircle
 												className="profilePic mr-3"
 											/>
+                      	<Link to={`/profile/${post.user._id}`}>
 											<p className="p-0 mt-2 general-font font-weight-bold">
 												{" "}
 												{post.user.userName}
 											</p>
+                      </Link>
 											<a className=" ml-auto a-tags ">
 												{" "}
 												<BsThreeDots />
