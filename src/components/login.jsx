@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Row, Col, Container } from "react-bootstrap";
 import downloadAppStore from "../assets/downloadAPPstore.png";
 // import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import logo from "./instagram.png";
+import logo from "../assets/Instagram-Logo.png";
 import {FcGoogle as GrFacebook } from "react-icons/fc";
 import "./login.css";
 import axios from "axios";
@@ -79,7 +79,7 @@ class Login extends Component {
               <Row className="d-flex justify-content-center ">
                 <img
                   className="containerPhoto"
-                  src="https://logos-world.net/wp-content/uploads/2020/04/Instagram-Logo.png"
+                  src={logo} 
                   alt="img"
                 />
               </Row>

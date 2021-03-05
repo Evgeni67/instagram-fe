@@ -63,10 +63,10 @@ class App extends Component {
                   marginTop: "100px",
                 }}
               >
-                <Col sm={12} md={9}>
+                <Col sm={12} md={7}>
                   <Feed />
                 </Col>
-                <Col md={3} className="d-sm-none d-md-block">
+                <Col md={5} className="d-sm-none d-md-block">
                   <SideBar />
                 </Col>
               </Row>
