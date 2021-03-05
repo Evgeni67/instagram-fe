@@ -10,6 +10,9 @@ class EditModal extends Component {
 
   render () {
   console.log(this.props.me.me)
+  const{single_user}=this.props.users
+ 
+  
   return (
     <>
     
@@ -21,13 +24,13 @@ class EditModal extends Component {
           <p>Full Name:</p>
           <input
             type="text"
-            value={this.props.me.me.userName}
+            value={single_user.userName}
             className=""
           />
           <p className="mt-3">Nickname: </p>
           <input
             type="text"
-            value={this.props.me.me.fullName}
+            value={single_user.fullName}
             className=""
           />
           <p className="mt-3 mb-0">Bio: </p>

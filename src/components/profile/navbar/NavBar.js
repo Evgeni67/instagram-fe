@@ -4,11 +4,14 @@ import logo from "../../../assets/Instagram-Logo.png";
 import { IoHomeOutline } from "react-icons/io5";
 import { FiSend, FiHeart } from "react-icons/fi";
 import { AiOutlineCompass } from "react-icons/ai";
+import { connect } from "react-redux";
 
 import { Link } from "react-router-dom";
 import "./NavBar.css";
+const mapStateToProps = (state) => state;
 
-const NavBar = () => {
+const NavBar = (props) => {
+console.log(props.me)
   return (
     <>
       <Row>
@@ -38,7 +41,7 @@ const NavBar = () => {
               style={{ width: "22px", height: "25px" }}
             />
 
-            <Link to="/profile">
+            <Link to={`/profile/${props.me.me._id}`}>
               <img
                 id="profile-pic-nav"
                 src="https://via.placeholder.com/150"
@@ -53,4 +56,5 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default connect(mapStateToProps)(NavBar)
+;
