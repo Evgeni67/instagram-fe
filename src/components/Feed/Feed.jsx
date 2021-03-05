@@ -8,180 +8,164 @@ import { Link }from 'react-router-dom'
 import { connect } from "react-redux";
 import PostModal from "../profile/posts/Modal";
 
-import { Row, Col, Container, Card, Image, Form } from "react-bootstrap";
-import "./feed.css";
+import { Row, Col, Container, Card, Image, Form } from "react-bootstrap"
+import "./feed.css"
 
-const mapStateToProps = (state) => state;
+const mapStateToProps = (state) => state
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchMewithThunk: () =>
-    dispatch(async (dispatch) => {
-      const token = localStorage.getItem("token");
-      const url = process.env.REACT_APP_URL;
-      const response = await fetch(url + "/users/me", {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      });
+	fetchMewithThunk: () =>
+		dispatch(async (dispatch) => {
+			const token = localStorage.getItem("token")
+			const url = process.env.REACT_APP_URL
+			const response = await fetch(url + "/users/me", {
+				headers: {
+					Authorization: "Bearer " + token,
+				},
+			})
 
-      const me = await response.json();
-
-      if (response.ok) {
-        dispatch({
-          type: "SET_ME",
-          payload: me,
-        });
-        console.log("me", me);
-      } else {
-        dispatch({
-          type: "SET_ERROR",
-          payload: me,
-        });
-      }
-    }),
-  fetchMyFollowedOneswithThunk: () =>
-    dispatch(async (dispatch) => {
-      const url = process.env.REACT_APP_URL;
-      const token = localStorage.getItem("token");
-      const response = await fetch(url + "/posts/fromFollowed", {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      });
-
-      const myFollowedOnes = await response.json();
-      console.log("The posts from people who I follow ", myFollowedOnes);
-
-      if (response.ok) {
-        dispatch({
-          type: "SET_USERS_I_FOLLOWED",
-          payload: myFollowedOnes,
-        });
-      } else {
-        dispatch({
-          type: "SET_ERROR",
-          payload: myFollowedOnes,
-        });
-      }
-    }),
-
-  fetchUserswithThunk: () =>
-    dispatch(async (dispatch) => {
-      const url = process.env.REACT_APP_URL;
-
-      const token = localStorage.getItem("token");
-      const response = await fetch(url + "/users", {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      });
-
-      const users = await response.json();
-      console.log("users", users);
-
-      if (response.ok) {
-        dispatch({
-          type: "SET_USERS",
-          payload: users,
-        });
-      } else {
-        dispatch({
-          type: "SET_ERROR",
-          payload: users,
-        });
-      }
-    }),
-
-
-  fetchPostsNotFollowewithThunk: () =>
-    dispatch(async (dispatch) => {
-      const url = process.env.REACT_APP_URL;
-
-      const token =localStorage.getItem("token")
-      const response = await fetch(url + "/posts/fromNotFollowed", {
-        headers: {
-          "Authorization":"Bearer " +
-          token
-
-        },
-      });
-
-      const posts= await response.json();
-      console.log("postswhonotfollowed", posts);
-
-
-      if (response.ok) {
-        dispatch({
-          type: "SET_POSTS_NOT_FOLLOWED",
-          payload: posts,
-
-        });
-      } else {
-        dispatch({
-          type: "SET_ERROR",
-          payload: posts,
-        });
-      }
-    }),
-
-});
-
-class Feed extends Component {
-  componentDidMount = () => {
-    this.props.fetchMewithThunk();
-    this.props.fetchUserswithThunk();
-    this.props.fetchMyFollowedOneswithThunk();
-    this.props.fetchPostsNotFollowewithThunk();
-  };
-
-
-  state = {
-    truncate: true,
-    showModal: false,
-
-    comment:{
-    text: ""
-
-
-    }
-
-  };
-  fetchComments= async (id) => {
-    const token =localStorage.getItem("token")
-	
-
-		try {
-	
-				let response = await fetch(
-					`${process.env.REACT_APP_URL}/comments/${id}`,
-					{
-						method: "POST",
-						body: JSON.stringify(this.state.comment),
-						headers: new Headers({
-							"Content-Type": "application/json",
-
-							Authorization: `Bearer ${token}`,
-						}),
-					}
-				)
-		
+			const me = await response.json()
 
 			if (response.ok) {
-				
+				dispatch({
+					type: "SET_ME",
+					payload: me,
+				})
+				console.log("me", me)
+			} else {
+				dispatch({
+					type: "SET_ERROR",
+					payload: me,
+				})
+			}
+		}),
+	fetchMyFollowedOneswithThunk: () =>
+		dispatch(async (dispatch) => {
+			const url = process.env.REACT_APP_URL
+			const token = localStorage.getItem("token")
+			const response = await fetch(url + "/posts/fromFollowed", {
+				headers: {
+					Authorization: "Bearer " + token,
+				},
+			})
+
+			const myFollowedOnes = await response.json()
+			console.log("The posts from people who I follow ", myFollowedOnes)
+
+			if (response.ok) {
+				dispatch({
+					type: "SET_USERS_I_FOLLOWED",
+					payload: myFollowedOnes,
+				})
+			} else {
+				dispatch({
+					type: "SET_ERROR",
+					payload: myFollowedOnes,
+				})
+			}
+		}),
+
+	fetchUserswithThunk: () =>
+		dispatch(async (dispatch) => {
+			const url = process.env.REACT_APP_URL
+
+			const token = localStorage.getItem("token")
+			const response = await fetch(url + "/users", {
+				headers: {
+					Authorization: "Bearer " + token,
+				},
+			})
+
+			const users = await response.json()
+			console.log("users", users)
+
+			if (response.ok) {
+				dispatch({
+					type: "SET_USERS",
+					payload: users,
+				})
+			} else {
+				dispatch({
+					type: "SET_ERROR",
+					payload: users,
+				})
+			}
+		}),
+
+	fetchPostsNotFollowewithThunk: () =>
+		dispatch(async (dispatch) => {
+			const url = process.env.REACT_APP_URL
+
+			const token = localStorage.getItem("token")
+			const response = await fetch(url + "/posts/fromNotFollowed", {
+				headers: {
+					Authorization: "Bearer " + token,
+				},
+			})
+
+			const posts = await response.json()
+			console.log("postswhonotfollowed", posts)
+
+			if (response.ok) {
+				dispatch({
+					type: "SET_POSTS_NOT_FOLLOWED",
+					payload: posts,
+				})
+			} else {
+				dispatch({
+					type: "SET_ERROR",
+					payload: posts,
+				})
+			}
+		}),
+})
+
+class Feed extends Component {
+	componentDidMount = () => {
+		this.props.fetchMewithThunk()
+		this.props.fetchUserswithThunk()
+		this.props.fetchMyFollowedOneswithThunk()
+		this.props.fetchPostsNotFollowewithThunk()
+	}
+
+	state = {
+		truncate: true,
+		showModal: false,
+
+		comment: {
+			text: "",
+		},
+	}
+	fetchComments = async (id) => {
+		const token = localStorage.getItem("token")
+
+		try {
+			let response = await fetch(
+				`${process.env.REACT_APP_URL}/comments/${id}`,
+				{
+					method: "POST",
+					body: JSON.stringify(this.state.comment),
+					headers: new Headers({
+						"Content-Type": "application/json",
+
+						Authorization: `Bearer ${token}`,
+					}),
+				}
+			)
+
+			if (response.ok) {
 				console.log("res of post", response)
 
 				this.setState({
-				comment: {
-						text:"",
+					comment: {
+						text: "",
 					},
 					errMessage: "",
 				})
-			
-		
 			} else {
 				console.log("an error occurred")
 				let error = await response.json()
-        console.log(error)
+				console.log(error)
 				this.setState({
 					errMessage: error.message,
 					loading: false,
@@ -196,20 +180,17 @@ class Feed extends Component {
 		}
 	}
 
-  updateField = (e) => {
+	updateField = (e) => {
 		let comment = { ...this.state.comment }
 		let currentid = e.currentTarget.id
 
-		
-			comment[currentid] = e.currentTarget.value // e.currentTarget.value is the keystroke
-	
+		comment[currentid] = e.currentTarget.value // e.currentTarget.value is the keystroke
 
 		this.setState({ comment: comment })
 	}
-  submitForm = (id) => {
-	
+	submitForm = (id) => {
 		this.setState({ loading: true })
-    this.fetchComments(id)
+		this.fetchComments(id)
 	}
 
 
@@ -415,4 +396,4 @@ class Feed extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Feed);
+export default connect(mapStateToProps, mapDispatchToProps)(Feed)
