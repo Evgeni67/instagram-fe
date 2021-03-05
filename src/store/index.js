@@ -14,7 +14,12 @@ export const initialState = {
 
   },
 
-  users:[],
+  users:{
+    users:[],
+    single_user:{},
+    single_user_id:""
+  },
+  
    
 
   posts:[]

@@ -1,21 +1,86 @@
-import React, { useState } from "react";
+import React, { Component} from "react";
 import { Button, Modal } from "react-bootstrap";
+import { connect } from "react-redux";
 import "./EditModal.css";
+const mapStateToProps = (state) => state;
 
-function EditModal({
-  handleShow,
-  handleClose,
-  fullName,
-  userName,
-  fetchMewithThunk,
-}) {
+
+class EditModal extends Component {
+  handleClose = () => this.props.handleClose(false)
+
+  render () {
+  console.log(this.props.me.me)
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        Launch demo modal
-      </Button>
+    
+    <Modal  show={this.props.show} onHide={this.props.handleClose} animation={false}>
+        <Modal.Header closeButton>
+          <Modal.Title>Edit your profile </Modal.Title>
+        </Modal.Header>
+        <Modal.Body><div >
+          <p>Full Name:</p>
+          <input
+            type="text"
+            value={this.props.me.me.userName}
+            className=""
+          />
+          <p className="mt-3">Nickname: </p>
+          <input
+            type="text"
+            value={this.props.me.me.fullName}
+            className=""
+          />
+          <p className="mt-3 mb-0">Bio: </p>
+          <textarea className="mt-4" cols="35" rows="10"></textarea>
+        </div>
+        
+  
+     </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={this.handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={this.handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
 
-      <div id="editModal-container">
+      {/* // <div  show={this.props.show} onHide={this.props.handleClose}> */}
+      
+          
+    
+       
+          
+ 
+     
+      {/* //   <div >
+      //     <p>Full Name:</p>
+      //     <input
+            type="text"
+            value={this.props.me.me.userName}
+            className="editModal-inputs"
+          />
+          <p className="mt-3">Nickname: </p>
+          <input
+            type="text"
+            value={this.props.me.me.fullName}
+            className="editModal-inputs t"
+          />
+          <p className="mt-3 mb-0">Bio: </p>
+          <textarea className="mt-4" cols="35" rows="10"></textarea>
+        </div>
+        </div>
+  
+        <div id="editModal-btns-wrapper">
+          <button id="close-btn" onClick={this.handleClose}>
+            Close
+          </button>
+          <button id="save-btn" onClick={this.handleClose}>Save Changes</button>
+        </div>
+        */}
+    
+      {/* <div id="editModal-container">
         <div id="editModal-top">
           <Modal.Title>Modify your infos</Modal.Title>
         </div>
@@ -41,9 +106,10 @@ function EditModal({
           </button>
           <button id="save-btn">Save Changes</button>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }
+}
 
-export default EditModal;
+export default connect(mapStateToProps)(EditModal);
