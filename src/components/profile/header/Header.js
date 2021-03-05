@@ -3,6 +3,9 @@ import { connect } from "react-redux";
 import { AiOutlineSetting } from "react-icons/ai";
 import EditModal from "./EditModal";
 import "./Header.css";
+import {browserHistory} from 'react-router';
+import { withRouter } from 'react-router-dom';
+
 
 const mapStateToProps = (state) => state;
 const mapDispatchToProps = (dispatch) => ({
@@ -76,6 +79,7 @@ class Header extends Component {
   handleShow=()=> {
     this.setState({ showModal: true });
   }
+  
 
   handleClose=(showMode)=> {
     this.setState({ showModal: showMode});
@@ -84,13 +88,14 @@ class Header extends Component {
   componentDidMount=()=>{
     this.props.fetchMewithThunk()
     this.props.fetchSingleUserwithThunk( window.location.pathname.split('/')[2])
-    
-  //  this.props.isItME()
+ 
+    if( window.location.pathname.split('/')[2] == this.props.me.me._id) {console.log(true)}
   
   }
   
   
   render() {
+    
     console.log("inside of heade",this.props.me)
 
     const{single_user}=this.props.users
