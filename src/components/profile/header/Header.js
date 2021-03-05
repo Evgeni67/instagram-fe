@@ -31,6 +31,31 @@ const mapDispatchToProps = (dispatch) => ({
         });
       }
     }),
+    fetchSingleUserwithThunk: (id) =>
+    dispatch(async (dispatch) => {
+      const token = localStorage.getItem("token");
+      const url = process.env.REACT_APP_URL;
+      const response = await fetch(url + "/users/"+ id, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      });
+
+      const user = await response.json();
+
+      if (response.ok) {
+        dispatch({
+          type: "SET_SINGLE_USER",
+          payload: user,
+        });
+        console.log("single_user", user);
+      } else {
+        dispatch({
+          type: "SET_ERROR",
+          payload: user,
+        });
+      }
+    }),
  
 
 });
@@ -54,6 +79,8 @@ class Header extends Component {
   }
   componentDidMount=()=>{
     this.props.fetchMewithThunk()
+    this.props.fetchSingleUserwithThunk( this.props.id)
+   
   }
 
   render() {

@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 const mapStateToProps = (state) => state;
 class SideBar extends Component {
   render() {
-     const {  users} = this.props;
+     const {  users} = this.props.users;
      const {  fullName,userName} = this.props.me.me;
    
     return (
