@@ -10,7 +10,10 @@
   justify-content: space-around;
   margin-top: -17px;
 }
-
+.profilePostImage{
+  width:250px;
+  height:290px
+}
 .post-btn {
   width: 110px;
   height: 100%;

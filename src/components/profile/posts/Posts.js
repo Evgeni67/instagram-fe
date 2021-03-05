@@ -6,6 +6,7 @@ import { BsGrid3X3, BsBookmark } from "react-icons/bs"
 // components
 import PostModal from "./Modal"
 import Saved from "./../savedPosts/Saved"
+import { Row, Col, Form, Button,Modal } from "react-bootstrap";
 // styles
 import "./Posts.css"
 
@@ -19,6 +20,7 @@ const Posts = (props) => {
 	
 	return (
 		<>
+    
 			<div id="posts-section">
 				<div id="posts-navigation">
 					<button onClick={() => setIsPost(true)} className="post-btn">
@@ -45,15 +47,20 @@ const Posts = (props) => {
 									(post) =>
 										post.imageUrl &&
 										post.imageUrl !== "" && (
+                      <>
 											<div className="col col-sm-12 col-md-6 col-lg-4 post">
 												<img
 													onClick={() => setShowModal(post._id)}
 													src={post.imageUrl}
 													alt="post-img"
+                          className = "profilePostImage"
 												/>
 											</div>
+                    
+                      </>
 										)
 								)}
+               
 						</div>
 					</div>
 				) : (
@@ -68,6 +75,7 @@ const Posts = (props) => {
 					/>
 				</div>
 			)}
+     
 		</>
 	)
 }
