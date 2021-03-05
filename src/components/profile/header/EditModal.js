@@ -11,16 +11,22 @@ const mapDispatchToProps = (dispatch) => ({
       const url = process.env.REACT_APP_URL;
       const response = await fetch(url + "/users/me", {
         method: "PUT",
-        headers: {
+
+        headers: new Headers({
+          "Content-Type": "application/json",
           Authorization: "Bearer " + token,
-        },
+        }),
+
         body: JSON.stringify(values),
       });
       let me = await response.json();
       if (response.ok) {
-        console.log(me);
+        dispatch({
+          type: "SET_ME",
+          payload: me,
+        });
       } else {
-        console.log("");
+        console.log("ERROR");
       }
     }),
 });
