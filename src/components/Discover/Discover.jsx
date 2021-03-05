@@ -1,50 +1,99 @@
-import React, { useState } from "react";
+import React, { Component } from "react";
 // icons
 import { BsGrid3X3, BsBookmark } from "react-icons/bs";
 // components
 import PostModal from "../profile/posts/Modal";
 
 // styles
-import "../profile/posts/Posts.css";
+import "./discover.css";
+import { Row, Col, Container, Card, Image, Form } from "react-bootstrap";
 import { connect } from "react-redux";
 
+
 const mapStateToProps = (state) => state;
+const mapDispatchToProps = (dispatch) => ({
+ 
+    fetchPostsNotFollowewithThunk: () =>
+    dispatch(async (dispatch) => {
+      const url = process.env.REACT_APP_URL;
 
-const Discover = (props) => {
-  
-  const [showModal, setShowModal] = useState(false);
-  const { users} = props.users;
-  console.log("users from discover",users)
-  return (
-    <>
-    
+      const token =localStorage.getItem("token")
+      const response = await fetch(url + "/posts/fromNotFollowed", {
+        headers: {
+          "Authorization":"Bearer " +
+          token
+
+        },
+      });
+
+      const posts= await response.json();
+      console.log("postswhonotfollowed", posts);
+
+      if (response.ok) {
+        dispatch({
+          type: "SET_POSTS_NOT_FOLLOWED",
+          payload: posts,
+
+        });
+      } else {
+        dispatch({
+          type: "SET_ERROR",
+          payload: posts,
+        });
+      }
+    }),
 
    
-      <div id="posts-section">
-    
-      <div id="posts-grid" className="container">
-            <div id="post-items" className="row no-gutters">
-              <div className="col col-sm-12 col-md-6 col-lg-4 post">
-                <img
-                  onClick={() => setShowModal(true)}
-                  src="https://via.placeholder.com/250"
+});
+
+
+
+class Discover  extends Component {
+
+
+  state={
+
+    showModal:false,
+  }
+componentDidMount=()=>{
+  this.props.fetchPostsNotFollowewithThunk()
+}
+  render(){
+
+  const { posts} = this. props.posts;
+  console.log("posts from discover",posts)
+    return(
+      <>
+
+      <Row>
+      {posts && posts.length > 0 && posts.map((post)=> 
+            post.imageUrl && 
+        <Col xs={12} md={3}>
+        <img
+                  onClick={() => this.setState({showModal:true})}
+                  src={post.imageUrl}
                   alt="post-img"
+                  width="100%"
+                  className=" discover-img"
                 />
-              </div>
-            </div>
-          </div>
-   
-      </div>
-      {showModal && (
+        </Col>
+        )}
+      </Row>
+     
+     
+       
+      {this.state.showModal && (
         <div id="modal-background">
           <PostModal
-            showModal={showModal}
-            closeModal={() => setShowModal(false)}
+            showModal={this.state.showModal}
+            closeModal={() => this.setState({ShowModal:false})}
           />
         </div>
       )}
     </>
-  );
-};
+    )
+  }
+}
 
-export default connect(mapStateToProps)(Discover);
+
+export default connect(mapStateToProps,mapDispatchToProps)(Discover);

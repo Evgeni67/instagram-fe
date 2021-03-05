@@ -12,6 +12,7 @@ import "./Posts.css"
 const mapStateToProps = (state) => state
 
 const Posts = (props) => {
+
 	const [isPost, setIsPost] = useState(true)
 	const [showModal, setShowModal] = useState(false)
 	const myposts = props.me.me.posts
