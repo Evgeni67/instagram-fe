@@ -4,6 +4,7 @@ import { FiSend, FiHeart } from "react-icons/fi"
 import { RiBookmarkLine } from "react-icons/ri"
 import { FaRegComment } from "react-icons/fa"
 import { VscSmiley } from "react-icons/vsc"
+import { Link } from "react-router-dom"
 import { connect } from "react-redux"
 import PostModal from "../profile/posts/Modal"
 
@@ -120,6 +121,10 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 class Feed extends Component {
+	constructor(props) {
+		super(props)
+		this.hideModal = this.hideModal.bind(this)
+	}
 	componentDidMount = () => {
 		this.props.fetchMewithThunk()
 		this.props.fetchUserswithThunk()
@@ -135,6 +140,7 @@ class Feed extends Component {
 			text: "",
 		},
 	}
+
 	fetchComments = async (id) => {
 		const token = localStorage.getItem("token")
 
@@ -154,6 +160,7 @@ class Feed extends Component {
 
 			if (response.ok) {
 				console.log("res of post", response)
+        this.props.fetchMyFollowedOneswithThunk() 
 
 				this.setState({
 					comment: {
@@ -191,7 +198,10 @@ class Feed extends Component {
 		this.setState({ loading: true })
 		this.fetchComments(id)
 	}
-
+	hideModal = () => {
+		console.log("hideModal")
+		this.setState({ showModal: false })
+	}
 	render() {
 		const { posts, name, surname, userName, email, follows } = this.props.me.me
 		const { myfollowedOnes } = this.props.me
@@ -221,10 +231,12 @@ class Feed extends Component {
 												roundedCircle
 												className="profilePic mr-3"
 											/>
-											<p className="p-0 mt-2 general-font font-weight-bold">
+                      	<Link to={`/profile/${post.user._id}`}>
+											<p className="p-0 mt-2 general-font font-weight-bold a-tags">
 												{" "}
 												{post.user.userName}
 											</p>
+                      </Link>
 											<a className=" ml-auto a-tags ">
 												{" "}
 												<BsThreeDots />
@@ -264,10 +276,12 @@ class Feed extends Component {
 												</p>
 											</Card.Title>
 											<Card.Text>
-												<p className="p-0 m-0  mr-2 d-inline general-font font-weight-bold a-tags">
-													{" "}
-													{post.user.userName}
-												</p>
+												<Link to={`/profile/${post.user._id}`}>
+													<p className="p-0 m-0  mr-2 d-inline general-font font-weight-bold a-tags">
+														{" "}
+														{post.user.userName}
+													</p>
+												</Link>
 												<p
 													className={
 														"m-0 p-0  " +
@@ -369,7 +383,7 @@ class Feed extends Component {
 						<div id="modal-background">
 							<PostModal
 								showModal={this.state.showModal}
-								closeModal={() => this.setState({ ShowModal: false })}
+								closeModal={() => this.hideModal()}
 							/>
 						</div>
 					)}

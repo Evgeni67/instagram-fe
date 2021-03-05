@@ -16,7 +16,8 @@ const Posts = (props) => {
 
 	const [isPost, setIsPost] = useState(true)
 	const [showModal, setShowModal] = useState(false)
-	const myposts = props.me.me.posts
+	const myposts = props.users.single_user.posts
+	
 	return (
 		<>
     

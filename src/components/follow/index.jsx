@@ -1,5 +1,4 @@
 import React, { Component } from "react"
-import { BsBookmark, BsBookmarkFill } from "react-icons/bs"
 import { connect } from "react-redux"
 
 const mapStateToProps = (state) => state
@@ -49,24 +48,21 @@ class Follow extends Component {
 
 	follow = async (action) => {
 		const token = localStorage.getItem("token")
-		//const comment = ""
 		console.log("token ", token, " type of token", typeof token)
 		try {
 			let response = await fetch(
 				`${process.env.REACT_APP_URL}/users/${action}/${this.props.user._id}`,
 				{
 					method: "POST",
-					//body: JSON.stringify(comment),
 					headers: new Headers({
 						"Content-Type": "application/json",
-
 						Authorization: `Bearer ${token}`,
 					}),
 				}
 			)
 
 			if (response.ok) {
-				response = await response.json()
+				//response = await response.json()
 				//console.log("res of post", me)
 				this.setState({ reload: true })
 				//refreshMe({ type: "SET_ME", payload: })
@@ -85,21 +81,36 @@ class Follow extends Component {
 		//const { myfollowedOnes } = this.props.me
 		//console.log("myfollowedOnes", myfollowedOnes)
 		const me = this.props.me.me
+		const followedIDs = me.follows && me.follows.map((f) => f._id)
+		console.log("me.follows", followedIDs)
+		console.log("passed user ", this.props.user ? this.props.user._id : "")
+		console.log(
+			me.follows &&
+				me.follows.includes(this.props.user ? this.props.user._id : "")
+				? "i follow this one"
+				: "i dont follow this one"
+		)
 		return (
 			<>
 				{me.follows &&
-					!me.follows.includes(this.props.user ? this.props.user._id : "") && (
-						<BsBookmark
-							style={{ fontSize: "24px" }}
+					!followedIDs.includes(this.props.user ? this.props.user._id : "") && (
+						<a
+							className="a-tags font-weight-bold "
+							style={{ color: "#0095F6", fontSize: "12px" }}
 							onClick={() => this.follow("follow")}
-						/>
+						>
+							Follow{" "}
+						</a>
 					)}
 				{me.follows &&
-					me.follows.includes(this.props.user ? this.props.user._id : "") && (
-						<BsBookmarkFill
-							style={{ fontSize: "24px" }}
+					followedIDs.includes(this.props.user ? this.props.user._id : "") && (
+						<a
+							className="a-tags font-weight-bold "
+							style={{ color: "#0095F6", fontSize: "12px" }}
 							onClick={() => this.follow("unfollow")}
-						/>
+						>
+							Unfollow{" "}
+						</a>
 					)}
 				           
 			</>

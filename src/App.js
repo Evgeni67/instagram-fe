@@ -40,7 +40,7 @@ class App extends Component {
               <NavBar />
             </div>
           </Route> */}
-          <Route exact path="/profile">
+          <Route exact path="/profile/:id">
             <NavBar />
 <Row>
             <Col sm={2} />
