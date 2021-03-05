@@ -49,14 +49,14 @@ class Follow extends Component {
 
 	follow = async (action) => {
 		const token = localStorage.getItem("token")
-		const comment = ""
+		//const comment = ""
 		console.log("token ", token, " type of token", typeof token)
 		try {
 			let response = await fetch(
 				`${process.env.REACT_APP_URL}/users/${action}/${this.props.user._id}`,
 				{
 					method: "POST",
-					body: JSON.stringify(comment),
+					//body: JSON.stringify(comment),
 					headers: new Headers({
 						"Content-Type": "application/json",
 

@@ -238,24 +238,10 @@ const PostModal = ({ showModal, closeModal }) => {
 										</div>
 									</div>
 									<div>
-										{
-											"" /*me.follows &&
-											me.follows.includes(post.user ? post.user._id : "") && (
-												<BsBookmark
-													style={{ fontSize: "24px" }}
-													onClick={() => follow("follow")}
-												/>
-											)}
-
-										{me.follows &&
-											!me.follows.includes(post.user ? post.user._id : "") && (
-												<BsBookmarkFill
-													style={{ fontSize: "24px" }}
-													onClick={() => follow("unfollow")}
-												/>
-											)*/
-										}
-										<Follow user={post.user} />
+										<BsBookmark
+											style={{ fontSize: "24px" }}
+											onClick={() => follow("follow")}
+										/>
 									</div>
 								</div>
 							</div>
