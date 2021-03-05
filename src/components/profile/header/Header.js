@@ -102,6 +102,7 @@ class Header extends Component {
           }
         );
         if (response.ok) {
+          this.setState({image:""})
           this.props.fetchMewithThunk();
           this.props.fetchSingleUserwithThunk(this.props.id);
         }
@@ -133,7 +134,7 @@ class Header extends Component {
       try {
         console.log(this.state.imageForPost)
         let post = new FormData();
-        await post.append("image", this.state.imageForPost);
+        await post.append("image", this.state.image);
         if (post) {
           let response = await fetch(
             process.env.REACT_APP_URL +
@@ -149,6 +150,7 @@ class Header extends Component {
             }
           );
           if (response.ok) {
+            this.setState({image:""})
             this.props.fetchMewithThunk();
             this.props.fetchSingleUserwithThunk(this.props.id);
           }
@@ -197,7 +199,7 @@ class Header extends Component {
               
             />
                <div
-              className="feed-btn-wrapper" 
+              className="feed-btn-wrapper"
             >
               <Form.Label htmlFor="postImage">
                 <GrAttachment className="attachIcon" />
@@ -207,7 +209,7 @@ class Header extends Component {
                 className="visually-hidden"
                 id="postImage"
                 accept="image/*"
-                onChange={(e) => this.setState({ imageForPost: e.target.files[0] })}
+                onChange={(e) => this.setState({ image: e.target.files[0] })}
               />
             </div>
             </Row>

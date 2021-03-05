@@ -59,13 +59,7 @@ const Posts = (props) => {
                       </>
 										)
 								)}
-                 <div className="col col-sm-12 col-md-6 col-lg-4 post">
-												<img
-													src="https://s3.amazonaws.com/static.graphemica.com/glyphs/i500s/000/010/184/original/002B-500x500.png?1275328183"
-													alt="post-img"
-                          className = "profilePostImage"
-												/>
-											</div>
+               
 						</div>
 					</div>
 				) : (
