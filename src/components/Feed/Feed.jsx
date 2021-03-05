@@ -120,6 +120,10 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 class Feed extends Component {
+	constructor(props) {
+		super(props)
+		this.closemodal = this.closeModal.bind(this)
+	}
 	componentDidMount = () => {
 		this.props.fetchMewithThunk()
 		this.props.fetchUserswithThunk()
@@ -190,6 +194,11 @@ class Feed extends Component {
 	submitForm = (id) => {
 		this.setState({ loading: true })
 		this.fetchComments(id)
+	}
+
+	closeModal = () => {
+		console.log("close this modal")
+		this.setState({ showModal: false })
 	}
 
 	render() {
@@ -369,7 +378,7 @@ class Feed extends Component {
 						<div id="modal-background">
 							<PostModal
 								showModal={this.state.showModal}
-								closeModal={() => this.setState({ ShowModal: false })}
+								closeModal={() => this.closeModal()}
 							/>
 						</div>
 					)}
