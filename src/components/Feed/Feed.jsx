@@ -4,7 +4,7 @@ import { FiSend, FiHeart } from "react-icons/fi";
 import { RiBookmarkLine } from "react-icons/ri";
 import { FaRegComment } from "react-icons/fa";
 import { VscSmiley } from "react-icons/vsc";
-import Link from 'react-router-dom'
+import { Link }from 'react-router-dom'
 import { connect } from "react-redux";
 import PostModal from "../profile/posts/Modal";
 
@@ -285,7 +285,7 @@ class Feed extends Component {
                     </p>
                   </Card.Title>
                   <Card.Text>
-                  <Link path={`/Profile/${item.id}`}>
+                  <Link path={`/Profile/${post.user._id}`}>
                     <p className="p-0 m-0  mr-2 d-inline general-font font-weight-bold a-tags">
                       {" "}
                       {post.user.userName}
