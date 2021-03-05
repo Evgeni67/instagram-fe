@@ -68,6 +68,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 class Header extends Component {
 
+
   state = {
     showModal: false,
     changeImage: false,
@@ -167,11 +168,13 @@ class Header extends Component {
       }
     }
   };
+
   handleClose = (showMode) => {
     this.setState({ showModal: showMode });
   };
   componentDidMount = () => {
     this.props.fetchMewithThunk();
+
     //this.props.fetchSingleUserwithThunk(this.props.id);
     this.props.fetchSingleUserwithThunk( window.location.pathname.split('/')[2])
     if( window.location.pathname.split('/')[2] == this.props.me.me._id) {console.log(true)}
@@ -189,6 +192,7 @@ class Header extends Component {
   render() {
     console.log("inside of heade", this.props.me);
     const{single_user}=this.props.users
+
     return (
       <>
         <Modal show={this.state.showAddPostModal}>
@@ -237,6 +241,7 @@ class Header extends Component {
             <img
               id="profilePicHead"
 
+
              // src={
              //   this.props.me.me.profilePicUrl
              //     ? this.props.me.me.profilePicUrl
@@ -244,6 +249,7 @@ class Header extends Component {
              // }
 
               src={single_user.profilePicUrl ? single_user.profilePicUrl:"https://via.placeholder.com/150" }
+
 
               alt="profile-pic"
               onClick={() => this.openChangeImage()}
@@ -283,16 +289,20 @@ class Header extends Component {
             <div id="profile-center" className="my-4">
               <div id="posts-left">
 
+
                 <strong>
-                  {single_user.posts && single_user.posts.length//this.props.me.me.posts && this.props.me.me.posts.length}
+                  {single_user.posts && single_user.posts.length}
+
                 </strong>{" "}
                 posts
               </div>
               <div id="followers-center">
                 <strong>
-                  {single_user.follows && single_user.follows.length//this.props.me.me.follows && this.props.me.me.follows.length}
+
+                  {single_user.follows && single_user.follows.length}
                 </strong>{" "}
                 followers
+
 
               </div>
               <div id="following-right">
@@ -304,8 +314,10 @@ class Header extends Component {
               </div>
             </div>
             <div id="profile-bottom">
+
               <h6>{single_user.userName}</h6>
               <p>Bio bla bla bla...</p>
+
             </div>
           </div>
         </div>
