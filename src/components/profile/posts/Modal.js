@@ -3,33 +3,146 @@ import React, { useCallback, useEffect, useState } from "react"
 import { GrClose, GrEmoji } from "react-icons/gr"
 import { BiDotsHorizontalRounded } from "react-icons/bi"
 import { FiSend, FiHeart } from "react-icons/fi"
-import { FaRegComment } from "react-icons/fa"
-import { BsBookmark } from "react-icons/bs"
+import { FaRegComment, FaHeart } from "react-icons/fa"
+import { BsBookmark, BsBookmarkFill } from "react-icons/bs"
+//import { connect } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
+import Follow from "../../follow"
 // css
 import "./Modal.css"
 
 const PostModal = ({ showModal, closeModal }) => {
 	const [post, setPost] = useState({})
+	const [input, setInput] = useState("")
+	const [reload, setReload] = useState(false)
+	const token = localStorage.getItem("token")
+	const url = process.env.REACT_APP_URL
+	const me = useSelector((state) => state.me.me)
+	const refreshMe = useDispatch()
+	//	console.log(state)
 	const fetchData = async () => {
-		console.log("callback")
-		const token = localStorage.getItem("token")
-		const url = process.env.REACT_APP_URL
 		let response = await fetch(url + "/posts/" + showModal, {
 			headers: {
 				Authorization: "Bearer " + token,
 			},
 		})
 		response = await response.json()
-		console.log(response)
+		//console.log(response)
 		setPost(response)
 	}
 
+	const postComment = async () => {
+		const comment = { text: input }
+		try {
+			let response = await fetch(
+				`${process.env.REACT_APP_URL}/comments/${showModal}`,
+				{
+					method: "POST",
+					body: JSON.stringify(comment),
+					headers: new Headers({
+						"Content-Type": "application/json",
+
+						Authorization: `Bearer ${token}`,
+					}),
+				}
+			)
+
+			if (response.ok) {
+				console.log("res of post", response)
+				setInput("")
+				setReload(true)
+			} else {
+				console.log("an error occurred")
+				let error = await response.json()
+				console.log(error)
+				/*	this.setState({
+					errMessage: error.message,
+					loading: false,
+				})*/
+			}
+		} catch (e) {
+			console.log(e) // Error
+			/*	this.setState({
+				errMessage: e.message,
+				loading: false,
+			})*/
+		}
+	}
+
+	const like = async (action) => {
+		const comment = { text: input }
+		try {
+			let response = await fetch(
+				`${process.env.REACT_APP_URL}/posts/${action}/${showModal}`,
+				{
+					method: "POST",
+					body: JSON.stringify(comment),
+					headers: new Headers({
+						"Content-Type": "application/json",
+
+						Authorization: `Bearer ${token}`,
+					}),
+				}
+			)
+
+			if (response.ok) {
+				console.log("res of post", response)
+				setInput("")
+				setReload(true)
+			} else {
+				console.log("an error occurred")
+				let error = await response.json()
+				console.log(error)
+			}
+		} catch (e) {
+			console.log(e)
+		}
+	}
+
+	const follow = async (action) => {
+		const comment = { text: input }
+		try {
+			let response = await fetch(
+				`${process.env.REACT_APP_URL}/users/${action}/${post.user._id}`,
+				{
+					method: "POST",
+					body: JSON.stringify(comment),
+					headers: new Headers({
+						"Content-Type": "application/json",
+
+						Authorization: `Bearer ${token}`,
+					}),
+				}
+			)
+
+			if (response.ok) {
+				response = await response.json()
+				console.log("res of post", me)
+				setReload(true)
+				//refreshMe({ type: "SET_ME", payload: })
+			} else {
+				console.log("an error occurred")
+				let error = await response.json()
+				console.log(error)
+			}
+		} catch (e) {
+			console.log(e)
+		}
+	}
+
 	useEffect(async () => {
-		console.log("componentDidMount and got post _ID ", showModal)
+		console.log("componentDidMount and got post _ID ", showModal, me)
 		fetchData()
 		console.log(post)
 	}, [])
 
+	useEffect(async () => {
+		//console.log("componentDidMount and got post _ID ", showModal)
+		if (reload) {
+			fetchData()
+			setReload(false)
+		}
+	}, [reload])
 	// to allow user close the modal with ESC button
 	const onKeyPress = useCallback(
 		(e) => {
@@ -51,7 +164,7 @@ const PostModal = ({ showModal, closeModal }) => {
 				<div id="modal-container">
 					<div id="modal-content">
 						<div id="modal-left">
-							<img src={post.imageUrl} alt="modal-img" />
+							<img className="w-100" src={post.imageUrl} alt="modal-img" />
 						</div>
 						<div id="modal-right">
 							<div id="modal-top">
@@ -104,7 +217,18 @@ const PostModal = ({ showModal, closeModal }) => {
 								<div id="modal-icons-bottom">
 									<div id="icons-left">
 										<div className="mx-1">
-											<FiHeart style={{ fontSize: "24px" }} />
+											{post.likes && !post.likes.includes(me._id) && (
+												<FiHeart
+													style={{ fontSize: "24px" }}
+													onClick={() => like("like")}
+												/>
+											)}
+											{post.likes && post.likes.includes(me._id) && (
+												<FaHeart
+													style={{ fontSize: "24px" }}
+													onClick={() => like("dislike")}
+												/>
+											)}
 										</div>
 										<div className="mx-1">
 											<FaRegComment style={{ fontSize: "24px" }} />
@@ -114,7 +238,24 @@ const PostModal = ({ showModal, closeModal }) => {
 										</div>
 									</div>
 									<div>
-										<BsBookmark style={{ fontSize: "24px" }} />
+										{
+											"" /*me.follows &&
+											me.follows.includes(post.user ? post.user._id : "") && (
+												<BsBookmark
+													style={{ fontSize: "24px" }}
+													onClick={() => follow("follow")}
+												/>
+											)}
+
+										{me.follows &&
+											!me.follows.includes(post.user ? post.user._id : "") && (
+												<BsBookmarkFill
+													style={{ fontSize: "24px" }}
+													onClick={() => follow("unfollow")}
+												/>
+											)*/
+										}
+										<Follow user={post.user} />
 									</div>
 								</div>
 							</div>
@@ -123,10 +264,15 @@ const PostModal = ({ showModal, closeModal }) => {
 									<GrEmoji style={{ fontSize: "24px" }} />
 								</div>
 								<div id="input-text-comment">
-									<input type="text" placeholder="Add your comment.." />
+									<input
+										type="text"
+										placeholder="Add your comment.."
+										value={input}
+										onChange={(e) => setInput(e.target.value)}
+									/>
 								</div>
 								<div id="pubblish-btn">
-									<button>Pubblish</button>
+									<button onClick={() => postComment()}>Pubblish</button>
 								</div>
 							</div>
 						</div>
