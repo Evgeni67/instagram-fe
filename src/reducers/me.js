@@ -22,7 +22,9 @@ export default function (state = initialState, action) {
     case "REMOVE_FROM_SAVED":
       return {
         ...state,
-        savedPosts: state.savedPosts.concat(action.payload),
+        savedPosts: state.savedPosts.filter(
+          (post) => post._id !== action.payload._id
+        ),
       };
     case "FOLLOW_THE_USER":
       return {

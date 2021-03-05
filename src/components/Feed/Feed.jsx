@@ -125,6 +125,14 @@ const mapDispatchToProps = (dispatch) => ({
       });
     });
   },
+  removeFromSaved: (post) => {
+    dispatch((dispatch) => {
+      dispatch({
+        type: "REMOVE_FROM_SAVED",
+        payload: post,
+      });
+    });
+  },
 });
 
 class Feed extends Component {
@@ -249,7 +257,16 @@ class Feed extends Component {
                         <FaRegComment className=" mr-3" />
                         <FiSend className=" mr-3" />
                         <RiBookmarkLine
-                          onClick={() => this.props.addToSaved(post)}
+                          onClick={() => {
+                            // this.props.me.savedPosts &&
+                            console.log(
+                              "HERE",
+                              this.props.me
+                              //   this.props.me.savedPosts.includes(post._id)
+                              //     ? this.props.removeFromSaved(post)
+                              //     : this.props.addToSaved(post)
+                            );
+                          }}
                           className=" ml-auto"
                         />
                       </div>
