@@ -41,9 +41,11 @@ class EditModal extends Component {
     },
   };
 
+
   updateField = (e) => {
     let values = { ...this.state.values };
     let currentid = e.currentTarget.id;
+
 
     values[currentid] = e.currentTarget.value;
 
@@ -53,6 +55,8 @@ class EditModal extends Component {
   handleClose = () => this.props.handleClose(false);
 
   render() {
+    console.log(this.props.me.me)
+    //const{single_user}=this.props.users
     // console.log(this.props.me.me.fullName);
     return (
       <>

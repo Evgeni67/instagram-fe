@@ -11,6 +11,7 @@ import Feed from "./components/Feed/Feed";
 import Discover from "./components/Discover/Discover";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Row, Col } from "react-bootstrap";
+import { RiDownloadFill } from "react-icons/ri";
 class App extends Component {
   render() {
     return (
@@ -20,13 +21,15 @@ class App extends Component {
             <Login />
           </Route>
           <Route exact path="/discover">
-          <NavBar />
-          <div style={{
-                  marginLeft: "70px",
-                  marginRight: "70px",
-                  marginTop: "100px",
-                }}>
-            <Discover/>
+            <NavBar />
+            <div
+              style={{
+                marginLeft: "70px",
+                marginRight: "70px",
+                marginTop: "100px",
+              }}
+            >
+              <Discover />
             </div>
           </Route>
           <Route exact path="/register">
@@ -37,10 +40,16 @@ class App extends Component {
               <NavBar />
             </div>
           </Route> */}
-          <Route exact path="/profile">
+          <Route exact path="/profile/:id">
             <NavBar />
+<Row>
+            <Col sm={2} />
+            <Col sm ={8}>
             <Header />
             <Posts />
+            </Col>
+            <Col sm={2} />
+            </Row>
           </Route>
           <Route exact path="/feed">
             <div className="App" style={{ overflowX: "hidden" }}>

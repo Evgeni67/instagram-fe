@@ -131,7 +131,8 @@ const PostModal = ({ showModal, closeModal }) => {
 	}
 
 	useEffect(async () => {
-		console.log("componentDidMount and got post _ID ", showModal, me)
+		console.log("componentDidMount and got post _ID ", showModal)
+		console.log("close modal function", closeModal)
 		fetchData()
 		console.log(post)
 	}, [])
@@ -164,7 +165,11 @@ const PostModal = ({ showModal, closeModal }) => {
 				<div id="modal-container">
 					<div id="modal-content">
 						<div id="modal-left">
-							<img className="w-100" src={post.imageUrl} alt="modal-img" />
+							<img
+								className="w-100 mh-100"
+								src={post.imageUrl}
+								alt="modal-img"
+							/>
 						</div>
 						<div id="modal-right">
 							<div id="modal-top">
