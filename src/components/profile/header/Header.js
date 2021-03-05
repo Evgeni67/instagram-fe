@@ -3,8 +3,9 @@ import { connect } from "react-redux";
 import { AiOutlineSetting } from "react-icons/ai";
 import EditModal from "./EditModal";
 import "./Header.css";
-import { Row, Col, Form, Button } from "react-bootstrap";
-import {GrAttachment} from "react-icons/gr";
+import { Row, Col, Form, Button, Modal } from "react-bootstrap";
+import axios from "axios";
+import { GrAttachment } from "react-icons/gr";
 const mapStateToProps = (state) => state;
 const mapDispatchToProps = (dispatch) => ({
   fetchMewithThunk: () =>
@@ -63,19 +64,34 @@ class Header extends Component {
   state = {
     showModal: false,
     changeImage: false,
-    image:"",
+    image: "",
+    showAddPostModal: false,
+    textForPost: "",
+    imageForPost:""
   };
-
+  showPostModal = () => {
+    if (this.state.showAddPostModal === true) {
+      this.setState({ showAddPostModal: false });
+    } else {
+      this.setState({ showAddPostModal: true });
+    }
+  };
   handleShow = () => {
     this.setState({ showModal: true });
+  };
+  changePostText = (e) => {
+    this.setState({ textForPost: e.target.value });
   };
   postProfileImage = async (postId) => {
     try {
       let post = new FormData();
       await post.append("image", this.state.image);
+      console.log(this.state.image)
       if (post) {
         let response = await fetch(
-          process.env.REACT_APP_URL + "/users/imageUpload/" + this.props.me.me._id,
+          process.env.REACT_APP_URL +
+            "/users/imageUpload/" +
+            this.props.me.me._id,
           {
             method: "POST",
             body: post,
@@ -94,29 +110,117 @@ class Header extends Component {
       console.log(error);
     }
   };
+  addPost = async () => {
+    const url = process.env.REACT_APP_URL;
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      data: {
+        text: this.state.textForPost,
+        user: this.props.me.me._id,
+      },
+    };
+    const res = await axios(url + "/posts", requestOptions);
 
+    if (res.status === 200) {
+   
+    
+    } else {
+         //HERE WE ADD THE IMAGE TO THE POST
+      try {
+        console.log(this.state.imageForPost)
+        let post = new FormData();
+        await post.append("image", this.state.imageForPost);
+        if (post) {
+          let response = await fetch(
+            process.env.REACT_APP_URL +
+              "/posts/imageUpload/" +
+              res.data,
+            {
+              method: "POST",
+              body: post,
+              headers: new Headers({
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+                Accept: "application/json",
+              }),
+            }
+          );
+          if (response.ok) {
+            this.props.fetchMewithThunk();
+            this.props.fetchSingleUserwithThunk(this.props.id);
+          }
+        }
+      } catch (error) {
+        console.log("Error uploading image!",error);
+      }
+    }
+  };
   handleClose = (showMode) => {
     this.setState({ showModal: showMode });
   };
   componentDidMount = () => {
     this.props.fetchMewithThunk();
     this.props.fetchSingleUserwithThunk(this.props.id);
+    console.log("TOKEN ------>",localStorage.getItem("token"));
   };
   openChangeImage = () => {
-    if(this.state.changeImage === true){
-      this.setState({changeImage:false})
-      console.log(this.props.me.me._id)
-      this.postProfileImage()
-    }else{
-      this.setState({changeImage:true})
-      
+    if (this.state.changeImage === true) {
+      this.setState({ changeImage: false });
+     
+      this.postProfileImage();
+    } else {
+      this.setState({ changeImage: true });
     }
-  }
+  };
   render() {
     console.log("inside of heade", this.props.me);
 
     return (
       <>
+        <Modal show={this.state.showAddPostModal}>
+          <Modal.Header closeButton>
+            <Modal.Title>
+              <Row className="d-flex justify-content-center">Add a Post </Row>
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Row>
+            <input
+              type="text"
+              id="fname"
+              name="fname"
+              className="postCaption"
+              onChange={(e) => this.changePostText(e)}
+              
+            />
+               <div
+              className="feed-btn-wrapper" 
+            >
+              <Form.Label htmlFor="postImage">
+                <GrAttachment className="attachIcon" />
+              </Form.Label>
+              <Form.Control
+                type="file"
+                className="visually-hidden"
+                id="postImage"
+                accept="image/*"
+                onChange={(e) => this.setState({ imageForPost: e.target.files[0] })}
+              />
+            </div>
+            </Row>
+          </Modal.Body>
+          <Modal.Footer>
+            <button variant="secondary" onClick={() => this.showPostModal()}>
+              Close
+            </button>
+            <button variant="primary" onClick={() => this.addPost()}>
+              Add Post{" "}
+            </button>
+          </Modal.Footer>
+        </Modal>
         <div id="profile-infos">
           <div id="profile-left">
             <img
@@ -129,20 +233,20 @@ class Header extends Component {
               alt="profile-pic"
               onClick={() => this.openChangeImage()}
             />
-  <div className={this.state.changeImage ? "feed-btn-wrapper" : "d-none"}>
-                <Form.Label htmlFor="postImage">
-                  <GrAttachment className ="mt-5 "/>
-                </Form.Label>
-                <Form.Control
-                  type="file"
-                  className="visually-hidden"
-                  id="postImage"
-                  accept="image/*"
-                  onChange={(e) => this.setState({ image: e.target.files[0] })}
-                />
-             
-              </div>
-          
+            <div
+              className={this.state.changeImage ? "feed-btn-wrapper" : "d-none"}
+            >
+              <Form.Label htmlFor="postImage">
+                <GrAttachment className="mt-5 " />
+              </Form.Label>
+              <Form.Control
+                type="file"
+                className="visually-hidden"
+                id="postImage"
+                accept="image/*"
+                onChange={(e) => this.setState({ image: e.target.files[0] })}
+              />
+            </div>
           </div>
 
           <div id="profile-right">
@@ -186,7 +290,7 @@ class Header extends Component {
             </div>
           </div>
         </div>
-        <div id="stories">some stories here</div>
+        <h onClick={() => this.showPostModal()}>Add a post</h>
         <hr></hr>
         {this.state.showModal ? (
           <EditModal
