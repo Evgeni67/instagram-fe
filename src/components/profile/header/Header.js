@@ -31,11 +31,11 @@ const mapDispatchToProps = (dispatch) => ({
         });
       }
     }),
-    fetchSingleUserwithThunk: (id) =>
+  fetchSingleUserwithThunk: (id) =>
     dispatch(async (dispatch) => {
       const token = localStorage.getItem("token");
       const url = process.env.REACT_APP_URL;
-      const response = await fetch(url + "/users/"+ id, {
+      const response = await fetch(url + "/users/" + id, {
         headers: {
           Authorization: "Bearer " + token,
         },
@@ -56,43 +56,39 @@ const mapDispatchToProps = (dispatch) => ({
         });
       }
     }),
- 
-
 });
 
-
 class Header extends Component {
- 
+  state = {
+    showModal: false,
+  };
 
-    
-    state = {
-      showModal: false,
-    };
-  
- 
-  handleShow=()=> {
+  handleShow = () => {
     this.setState({ showModal: true });
-  }
+  };
 
-  handleClose=(showMode)=> {
-    this.setState({ showModal: showMode});
-  }
-  componentDidMount=()=>{
-    this.props.fetchMewithThunk()
-    this.props.fetchSingleUserwithThunk( this.props.id)
-   
-  }
+  handleClose = (showMode) => {
+    this.setState({ showModal: showMode });
+  };
+  componentDidMount = () => {
+    this.props.fetchMewithThunk();
+    this.props.fetchSingleUserwithThunk(this.props.id);
+  };
 
   render() {
-    console.log("inside of heade",this.props.me)
- 
+    console.log("inside of heade", this.props.me);
+
     return (
       <>
         <div id="profile-infos">
           <div id="profile-left">
             <img
               id="profilePicHead"
-              src={this.props.me.me.profilePicUrl ? this.props.me.me.profilePicUrl:"https://via.placeholder.com/150" }
+              src={
+                this.props.me.me.profilePicUrl
+                  ? this.props.me.me.profilePicUrl
+                  : "https://via.placeholder.com/150"
+              }
               alt="profile-pic"
             />
           </div>
@@ -112,18 +108,28 @@ class Header extends Component {
             </div>
             <div id="profile-center" className="my-4">
               <div id="posts-left">
-                <strong>{this.props.me.me.posts && this.props.me.me.posts.length}</strong> posts
+                <strong>
+                  {this.props.me.me.posts && this.props.me.me.posts.length}
+                </strong>{" "}
+                posts
               </div>
               <div id="followers-center">
-                <strong>{this.props.me.me.follows && this.props.me.me.follows.length}</strong> followers
+                <strong>
+                  {this.props.me.me.follows && this.props.me.me.follows.length}
+                </strong>{" "}
+                followers
               </div>
               <div id="following-right">
-                <strong>{this.props.me.myfollowedOnes&& this.props.me.myfollowedOnes.length}</strong> following
+                <strong>
+                  {this.props.me.myfollowedOnes &&
+                    this.props.me.myfollowedOnes.length}
+                </strong>{" "}
+                following
               </div>
             </div>
             <div id="profile-bottom">
               <h6>{this.props.me.me.userName}</h6>
-              <p>Bio bla bla bla...</p>
+              <p>Bio..</p>
             </div>
           </div>
         </div>
@@ -141,4 +147,4 @@ class Header extends Component {
   }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

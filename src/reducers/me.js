@@ -30,6 +30,7 @@ export default function (state = initialState, action) {
         ...state,
         me: action.payload,
       };
+
     case "SET_USERS_I_FOLLOWED":
       return {
         ...state,
