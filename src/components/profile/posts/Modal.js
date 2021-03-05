@@ -165,7 +165,11 @@ const PostModal = ({ showModal, closeModal }) => {
 				<div id="modal-container">
 					<div id="modal-content">
 						<div id="modal-left">
-							<img className="w-100" src={post.imageUrl} alt="modal-img" />
+							<img
+								className="w-100 mh-100"
+								src={post.imageUrl}
+								alt="modal-img"
+							/>
 						</div>
 						<div id="modal-right">
 							<div id="modal-top">
