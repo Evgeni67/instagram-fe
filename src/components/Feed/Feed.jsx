@@ -120,11 +120,12 @@ const mapDispatchToProps = (dispatch) => ({
 		}),
 })
 
+
+
 class Feed extends Component {
-	constructor(props) {
-		super(props)
-		this.closemodal = this.closeModal.bind(this)
-	}
+	
+
+
 	componentDidMount = () => {
 		this.props.fetchMewithThunk()
 		this.props.fetchUserswithThunk()
