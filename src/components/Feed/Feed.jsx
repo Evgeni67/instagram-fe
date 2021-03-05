@@ -155,6 +155,7 @@ class Feed extends Component {
 
 			if (response.ok) {
 				console.log("res of post", response)
+        this.props.fetchMyFollowedOneswithThunk() 
 
 				this.setState({
 					comment: {
