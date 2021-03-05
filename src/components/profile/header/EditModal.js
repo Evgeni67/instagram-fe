@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
+import { connect } from "react-redux";
 import "./EditModal.css";
 
-function EditModal({
-  handleShow,
-  handleClose,
-  fullName,
-  userName,
-  fetchMewithThunk,
-}) {
+const mapStateToProps = (state) => state;
+
+function EditModal({ handleShow, handleClose }, props) {
+  console.log(props.me);
   return (
     <>
       <Button variant="primary" onClick={handleShow}>
@@ -23,13 +21,13 @@ function EditModal({
           <p>Full Name:</p>
           <input
             type="text"
-            value={this.props.me.me.userName}
+            // value={props.me.me.userName}
             className="editModal-inputs"
           />
           <p className="mt-3">Nickname: </p>
           <input
             type="text"
-            value={this.props.me.me.fullName}
+            // value={props.me.me.fullName}
             className="editModal-inputs"
           />
           <p className="mt-3 mb-0">Bio: </p>
@@ -46,4 +44,4 @@ function EditModal({
   );
 }
 
-export default EditModal;
+export default connect(mapStateToProps)(EditModal);
