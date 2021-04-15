@@ -131,10 +131,10 @@ class Header extends Component {
                 <strong>{single_user.posts && single_user.posts.length}</strong> posts
               </div>
               <div id="followers-center">
-                <strong>{single_user.follows && single_user.follows.length}</strong> followers
+                <strong>{this.props.me.myfollowedOnes && this.props.me.myfollowedOnes.length}</strong> followers
               </div>
               <div id="following-right">
-                <strong>{this.props.me.myfollowedOnes&& this.props.me.myfollowedOnes.length}</strong> following
+                <strong>{single_user.follows && single_user.follows.length}</strong> following
               </div>
             </div>
             <div id="profile-bottom">
